@@ -1,0 +1,96 @@
+{
+  "doctors": [
+    {
+      "id": "d1234567-89ab-cdef-0123-456789abcdef",
+      "document_type": "CC",
+      "document_number": "1012345678",
+      "full_name": "María Fernanda López García",
+      "birth_date": "1985-06-15",
+      "gender": "F",
+      "email": "maria.lopez@hospital.com",
+      "phone": "+57 300 123 4567",
+      "address": "Calle 100 #45-67, Bogotá, Colombia",
+      "is_active": true,
+      "created_at": "2026-01-15T08:00:00.000Z",
+      "updated_at": "2026-01-15T08:00:00.000Z"
+    },
+    {
+      "id": "e2345678-9abc-def0-1234-567890abcdef",
+      "document_type": "CC",
+      "document_number": "80987654",
+      "full_name": "Carlos Andrés Martínez Rodríguez",
+      "birth_date": "1978-11-22",
+      "gender": "M",
+      "email": "carlos.martinez@clinica.com",
+      "phone": "+57 320 987 6543",
+      "address": "Carrera 7 #45-12, Medellín, Antioquia",
+      "is_active": true,
+      "created_at": "2026-02-10T10:30:00.000Z",
+      "updated_at": "2026-02-10T10:30:00.000Z"
+    }
+  ],
+  "doctor_professional_data": [
+    {
+      "id": "p1234567-89ab-cdef-0123-456789abcdef",
+      "id_doctor": "d1234567-89ab-cdef-0123-456789abcdef",
+      "professional_title": "Médico Especialista en Audiología",
+      "university": "Universidad Nacional de Colombia",
+      "country": "Colombia",
+      "graduation_year": 2015,
+      "professional_card_number": "MP-12345678",
+      "rethus_registration": "RETHUS-87654321",
+      "registration_status": "active",
+      "medical_specialty": "Audiología",
+      "subspecialty": "Otoneurología",
+      "additional_certifications": [
+        {
+          "name": "Certificación en Implantes Cocleares",
+          "institution": "Universidad de Buenos Aires",
+          "year": 2018
+        },
+        {
+          "name": "Diplomado en Rehabilitación Auditiva",
+          "institution": "Universidad de los Andes",
+          "year": 2020
+        }
+      ],
+      "diploma_url": "localstorage://doctor_diploma_maria",
+      "degree_certificate_url": "localstorage://doctor_acta_maria",
+      "specialty_certificates_url": [
+        "localstorage://cert_audologia_maria",
+        "localstorage://cert_implantes_maria"
+      ],
+      "is_verified": true,
+      "created_at": "2026-01-15T08:30:00.000Z",
+      "updated_at": "2026-03-20T14:00:00.000Z"
+    },
+    {
+      "id": "p2345678-9abc-def0-1234-567890abcdef",
+      "id_doctor": "e2345678-9abc-def0-1234-567890abcdef",
+      "professional_title": "Médico Otorrinolaringólogo",
+      "university": "Universidad de Antioquia",
+      "country": "Colombia",
+      "graduation_year": 2010,
+      "professional_card_number": "MP-87654321",
+      "rethus_registration": "RETHUS-12345678",
+      "registration_status": "active",
+      "medical_specialty": "Otorrinolaringología",
+      "subspecialty": null,
+      "additional_certifications": [
+        {
+          "name": "Fellowship en Cirugía de Oído",
+          "institution": "Johns Hopkins Hospital",
+          "year": 2013
+        }
+      ],
+      "diploma_url": "localstorage://doctor_diploma_carlos",
+      "degree_certificate_url": "localstorage://doctor_acta_carlos",
+      "specialty_certificates_url": [
+        "localstorage://cert_otorrino_carlos"
+      ],
+      "is_verified": true,
+      "created_at": "2026-02-10T11:00:00.000Z",
+      "updated_at": "2026-02-10T11:00:00.000Z"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "researchId": "123e4567-e89b-12d3-a456-426614174000",
+  "notes": [
+    {
+      "id": "note-001",
+      "text": "Observación inicial sobre el paciente: muestra signos de mejora después del tratamiento.",
+      "color": "#4CAF50",
+      "colorName": "green",
+      "createdAt": "2024-01-15T10:30:00.000Z",
+      "sourceMessageIndex": 0,
+      "sourceContent": "El paciente reporta disminución del tinnitus después de la sesión de terapia."
+    },
+    {
+      "id": "note-002",
+      "text": "Se requiere seguimiento adicional para evaluar la respuesta al tratamiento.",
+      "color": "#FFC107",
+      "colorName": "yellow",
+      "createdAt": "2024-01-16T14:20:00.000Z",
+      "sourceMessageIndex": 1,
+      "sourceContent": "Revisar resultados de audiometría programada para el 20 de enero."
+    },
+    {
+      "id": "note-003",
+      "text": "Paciente no presentó efectos secundarios durante la última sesión.",
+      "color": "#2196F3",
+      "colorName": "blue",
+      "createdAt": "2024-01-17T09:15:00.000Z",
+      "sourceMessageIndex": 2,
+      "sourceContent": "Continuar con el protocolo actual de tratamiento."
+    }
+  ]
+}

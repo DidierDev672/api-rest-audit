@@ -1,0 +1,15 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "id_patient": "patient-uuid-001",
+  "id_doctor": "doctor-uuid-001",
+  "id_screening": "screening-uuid-001",
+  "note_type": "evaluacion",
+  "title_note": "Evaluación auditiva inicial",
+  "description_note": "Paciente presenta pérdida auditiva leve en oído derecho. Se realizan pruebas de audiometría tonal y vocal.",
+  "diagnosis": "Hipoacusia neurosensorial leve bilateral",
+  "treatment": "Se recomienda uso de audífonos y control audiológico cada 6 meses",
+  "observations": "Paciente cooperó adecuadamente durante la evaluación. No presenta antecedentes familiares relevantes.",
+  "is_active": true,
+  "created_at": "2026-04-02T10:30:00.000Z",
+  "updated_at": "2026-04-02T10:30:00.000Z"
+}

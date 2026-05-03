@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS public.research_notes (
+  id UUID PRIMARY KEY,
+  text TEXT NOT NULL,
+  color VARCHAR(50) NOT NULL,
+  start_offset INTEGER NOT NULL,
+  end_offset INTEGER NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL
+);
+
+ALTER TABLE public.research_notes ENABLE ROW LEVEL SECURITY;

@@ -1,0 +1,75 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "id_patient": "12345678-1234-1234-1234-123456789012",
+  "id_tinnitus_questionnaires": "87654321-4321-4321-4321-210987654321",
+  "answer": [
+    {
+      "id": "answer-001",
+      "title": "Nivel de ruido",
+      "description": "Qué tan fuerte es el ruido que escucha?",
+      "optionsAnswer": [
+        {
+          "id": "opt-001",
+          "text": "Leve",
+          "value": 1
+        },
+        {
+          "id": "opt-002",
+          "text": "Moderado",
+          "value": 2
+        },
+        {
+          "id": "opt-003",
+          "text": "Severo",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "answer-002",
+      "title": "Frecuencia del ruido",
+      "description": "Con qué frecuencia escucha el ruido?",
+      "optionsAnswer": [
+        {
+          "id": "opt-004",
+          "text": "Ocasionalmente",
+          "value": 1
+        },
+        {
+          "id": "opt-005",
+          "text": "Frecuentemente",
+          "value": 2
+        },
+        {
+          "id": "opt-006",
+          "text": "Siempre",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "id": "answer-003",
+      "title": "Impacto en el sueño",
+      "description": "El ruido afecta su capacidad de dormir?",
+      "optionsAnswer": [
+        {
+          "id": "opt-007",
+          "text": "Nunca",
+          "value": 0
+        },
+        {
+          "id": "opt-008",
+          "text": "A veces",
+          "value": 1
+        },
+        {
+          "id": "opt-009",
+          "text": "Siempre",
+          "value": 2
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-04-07T10:30:00.000Z",
+  "updated_at": "2026-04-07T10:30:00.000Z"
+}

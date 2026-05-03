@@ -1,0 +1,45 @@
+{
+  "researchId": "123e4567-e89b-12d3-a456-426614174000",
+  "session": {
+    "title": "Evaluación de tratamiento para tinnitus",
+    "originalDescription": "Sesión de seguimiento para evaluar la respuesta del paciente al tratamiento de Terapia de Reentrenamiento del Tinnitus (TRT)",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Buenos días, doctor. Hoy vengo a la sesión de seguimiento mensual.",
+        "timestamp": "2024-01-15T09:00:00.000Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Buenos días. ¿Cómo ha evolucionado su tinnitus desde la última sesión?",
+        "timestamp": "2024-01-15T09:00:30.000Z"
+      },
+      {
+        "role": "user",
+        "content": "He notado una disminución en la intensidad del pitido, especialmente por las mañanas.",
+        "timestamp": "2024-01-15T09:01:15.000Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Eso es una buena señal. ¿Ha notado algún cambio en cómo afecta su vida diaria?",
+        "timestamp": "2024-01-15T09:02:00.000Z"
+      },
+      {
+        "role": "user",
+        "content": "Duermo mejor ahora, antes me costaba conciliar el sueño.",
+        "timestamp": "2024-01-15T09:02:45.000Z"
+      }
+    ],
+    "summary": "El paciente muestra mejora significativa en los síntomas del tinnitus. La intensidad ha disminuido y la calidad del sueño ha mejorado.",
+    "tags": ["seguimiento", "tinnitus", "mejora", "tratamiento"],
+    "createdAt": "2024-01-15T09:00:00.000Z",
+    "updatedAt": "2024-01-15T09:30:00.000Z"
+  },
+  "metadata": {
+    "totalMessages": 5,
+    "totalUserMessages": 3,
+    "totalAssistantMessages": 2,
+    "duration": 1800,
+    "aiModel": "gpt-4"
+  }
+}

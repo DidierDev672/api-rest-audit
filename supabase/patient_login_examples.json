@@ -1,0 +1,237 @@
+{
+  "examples": {
+    "register": {
+      "description": "Ejemplo de registro de login de paciente",
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/auth/register",
+        "body": {
+          "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+          "email": "juan.perez@example.com",
+          "username": "juan_perez",
+          "password": "SecurePassword123!",
+          "permits": ["patient"]
+        }
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+          "email": "juan.perez@example.com",
+          "username": "juan_perez",
+          "permits": ["patient"],
+          "token": null,
+          "createdAt": "2026-03-26T10:00:00.000Z",
+          "updatedAt": "2026-03-26T10:00:00.000Z"
+        }
+      }
+    },
+    "login_with_email": {
+      "description": "Ejemplo de inicio de sesión con email",
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/auth/login",
+        "body": {
+          "email": "juan.perez@example.com",
+          "password": "SecurePassword123!"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "patientLogin": {
+            "id": "123e4567-e89b-12d3-a456-426614174000",
+            "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+            "email": "juan.perez@example.com",
+            "username": "juan_perez",
+            "permits": ["patient"],
+            "token": "generated-token-here",
+            "createdAt": "2026-03-26T10:00:00.000Z",
+            "updatedAt": "2026-03-26T10:30:00.000Z"
+          },
+          "token": "550e8400-e29b-41d4-a716-446655440000-abc123def456..."
+        }
+      }
+    },
+    "login_with_username": {
+      "description": "Ejemplo de inicio de sesión con nombre de usuario",
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/auth/login",
+        "body": {
+          "username": "juan_perez",
+          "password": "SecurePassword123!"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "patientLogin": {
+            "id": "123e4567-e89b-12d3-a456-426614174000",
+            "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+            "email": "juan.perez@example.com",
+            "username": "juan_perez",
+            "permits": ["patient"],
+            "token": "generated-token-here",
+            "createdAt": "2026-03-26T10:00:00.000Z",
+            "updatedAt": "2026-03-26T10:30:00.000Z"
+          },
+          "token": "550e8400-e29b-41d4-a716-446655440000-abc123def456..."
+        }
+      }
+    },
+    "logout": {
+      "description": "Ejemplo de cierre de sesión",
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/auth/logout",
+        "headers": {
+          "Authorization": "Bearer <token>"
+        }
+      },
+      "response": {
+        "status": 204,
+        "body": null
+      }
+    },
+    "validate_token": {
+      "description": "Ejemplo de validación de token",
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/auth/validate",
+        "headers": {
+          "Authorization": "Bearer <token>"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "123e4567-e89b-12d3-a456-426614174000",
+          "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+          "email": "juan.perez@example.com",
+          "username": "juan_perez",
+          "permits": ["patient"],
+          "token": "generated-token-here",
+          "createdAt": "2026-03-26T10:00:00.000Z",
+          "updatedAt": "2026-03-26T10:30:00.000Z"
+        }
+      }
+    },
+    "error_cases": {
+      "invalid_credentials": {
+        "description": "Credenciales inválidas",
+        "request": {
+          "method": "POST",
+          "url": "/api/v1/auth/login",
+          "body": {
+            "email": "juan.perez@example.com",
+            "password": "WrongPassword"
+          }
+        },
+        "response": {
+          "status": 401,
+          "body": {
+            "error": "Credenciales inválidas"
+          }
+        }
+      },
+      "email_already_exists": {
+        "description": "Email ya registrado",
+        "request": {
+          "method": "POST",
+          "url": "/api/v1/auth/register",
+          "body": {
+            "idPatient": "550e8400-e29b-41d4-a716-446655440001",
+            "email": "juan.perez@example.com",
+            "username": "juan_perez2",
+            "password": "SecurePassword123!"
+          }
+        },
+        "response": {
+          "status": 409,
+          "body": {
+            "error": "Ya existe una cuenta con este email"
+          }
+        }
+      },
+      "invalid_token": {
+        "description": "Token inválido o expirado",
+        "request": {
+          "method": "GET",
+          "url": "/api/v1/auth/validate",
+          "headers": {
+            "Authorization": "Bearer invalid-token"
+          }
+        },
+        "response": {
+          "status": 401,
+          "body": {
+            "error": "Token inválido o expirado"
+          }
+        }
+      },
+      "validation_error": {
+        "description": "Error de validación en registro",
+        "request": {
+          "method": "POST",
+          "url": "/api/v1/auth/register",
+          "body": {
+            "idPatient": "invalid-uuid",
+            "email": "invalid-email",
+            "username": "ab",
+            "password": "short"
+          }
+        },
+        "response": {
+          "status": 400,
+          "body": {
+            "error": [
+              {
+                "code": "string.too_small",
+                "message": "El nombre de usuario debe tener al menos 3 caracteres",
+                "path": ["username"]
+              },
+              {
+                "code": "invalid_string",
+                "message": "Email inválido",
+                "path": ["email"]
+              },
+              {
+                "code": "invalid_type",
+                "message": "El ID del paciente debe ser un UUID válido",
+                "path": ["idPatient"]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "permits_examples": {
+      "patient": {
+        "description": "Permiso de paciente",
+        "value": ["patient"]
+      },
+      "user": {
+        "description": "Permiso de usuario",
+        "value": ["user"]
+      },
+      "doctor": {
+        "description": "Permiso de doctor",
+        "value": ["doctor"]
+      },
+      "administrator": {
+        "description": "Permiso de administrador",
+        "value": ["administrator"]
+      },
+      "super_administrator": {
+        "description": "Permiso de super administrador",
+        "value": ["super_administrator"]
+      },
+      "multiple_roles": {
+        "description": "Múltiples roles",
+        "value": ["patient", "doctor"]
+      }
+    }
+  }
+}

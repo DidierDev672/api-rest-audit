@@ -1,0 +1,37 @@
+{
+  "name": "auditory-api",
+  "version": "1.0.0",
+  "description": "REST API for auditory health with Node.js + TypeScript",
+  "main": "dist/infrastructure/server/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/infrastructure/server/index.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "aws-lambda": "^1.0.7",
+    "cors": "2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "tsx": "^4.21.0",
+    "uuid": "9.0.0",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.161",
+    "@types/cors": "2.8.17",
+    "@types/express": "4.17.21",
+    "@types/node": "20.10.0",
+    "@types/uuid": "9.0.7",
+    "globals": "17.4.0",
+    "jiti": "2.6.1",
+    "sst": "^4.12.10",
+    "standard": "17.1.2",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.3.2"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
+  }
+}

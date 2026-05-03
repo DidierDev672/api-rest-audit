@@ -1,0 +1,49 @@
+{
+  "ejemplo_post_investigacion": {
+    "url": "http://localhost:3000/api/v1/investigaciones",
+    "metodo": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id_resource": "inv-001",
+      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura"
+    },
+    "respuesta_exitosa": {
+      "id_resource": "inv-001",
+      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+      "createdAt": "2026-04-28T10:00:00.000Z",
+      "updatedAt": "2026-04-28T10:00:00.000Z"
+    }
+  },
+  "ejemplo_get_investigaciones": {
+    "url": "http://localhost:3000/api/v1/investigaciones",
+    "metodo": "GET",
+    "respuesta_exitosa": [
+      {
+        "id_resource": "inv-001",
+        "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+        "createdAt": "2026-04-28T10:00:00.000Z",
+        "updatedAt": "2026-04-28T10:00:00.000Z"
+      }
+    ]
+  },
+  "ejemplo_get_investigacion_by_id": {
+    "url": "http://localhost:3000/api/v1/investigaciones/inv-001",
+    "metodo": "GET",
+    "respuesta_exitosa": {
+      "id_resource": "inv-001",
+      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+      "createdAt": "2026-04-28T10:00:00.000Z",
+      "updatedAt": "2026-04-28T10:00:00.000Z"
+    }
+  },
+  "errores_validacion": {
+    "id_resource_vacio": {
+      "error": "id_resource es requerido y no puede estar vacío"
+    },
+    "content_resource_vacio": {
+      "error": "content_resource es requerido y no puede estar vacío"
+    }
+  }
+}
