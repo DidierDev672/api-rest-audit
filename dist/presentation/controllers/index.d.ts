@@ -14,4 +14,7 @@ export * from './ScreeningResponseController';
 export * from './ScreeningNoteController';
 export * from './DoctorController';
 export * from './DoctorProfessionalDataController';
+export * from './InvestigacionController';
+export * from './ResearchAnalysisController';
+export * from './TinnitusAnalysisController';
 //# sourceMappingURL=index.d.ts.map

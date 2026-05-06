@@ -101,6 +101,36 @@ class ResearchChatSessionRepository {
         }));
         return sessions;
     }
+    async findById(sessionId) {
+        Logger_1.Logger.info('Buscando chat session por ID', { sessionId });
+        const { data, error } = await supabase_1.supabase
+            .from(this.sessionsTable)
+            .select('*')
+            .eq('id', sessionId)
+            .single();
+        if (error) {
+            if (error.code === 'PGRST116') {
+                Logger_1.Logger.warn('Chat session no encontrada', { sessionId });
+                return null;
+            }
+            Logger_1.Logger.danger('Error al buscar chat session', { error: error.message });
+            throw new Error(error.message);
+        }
+        const { data: messages } = await supabase_1.supabase
+            .from(this.messagesTable)
+            .select('*')
+            .eq('session_id', sessionId)
+            .order('timestamp', { ascending: true });
+        Logger_1.Logger.success('Chat session encontrada', { sessionId });
+        return {
+            ...this.mapSessionToEntity(data),
+            messages: (messages || []).map(msg => ({
+                role: msg.role,
+                content: msg.content,
+                timestamp: msg.timestamp,
+            })),
+        };
+    }
     mapSessionToEntity(data) {
         return {
             researchId: data.research_id,

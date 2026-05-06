@@ -10,18 +10,18 @@ export declare const CreateDoctorSchema: z.ZodObject<{
     address: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     email: string;
+    fullName: string;
     documentType: "CC" | "CE" | "PA" | "TI";
     documentNumber: string;
-    fullName: string;
     birthDate: string;
     gender: "M" | "F" | "Otro";
     phone?: string | undefined;
     address?: string | undefined;
 }, {
     email: string;
+    fullName: string;
     documentType: "CC" | "CE" | "PA" | "TI";
     documentNumber: string;
-    fullName: string;
     birthDate: string;
     gender: "M" | "F" | "Otro";
     phone?: string | undefined;
@@ -38,22 +38,22 @@ export declare const UpdateDoctorSchema: z.ZodObject<{
     address: z.ZodOptional<z.ZodString>;
     isActive: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    email?: string | undefined;
     documentType?: "CC" | "CE" | "PA" | "TI" | undefined;
     documentNumber?: string | undefined;
     fullName?: string | undefined;
     birthDate?: string | undefined;
     gender?: "M" | "F" | "Otro" | undefined;
+    email?: string | undefined;
     phone?: string | undefined;
     address?: string | undefined;
     isActive?: boolean | undefined;
 }, {
-    email?: string | undefined;
     documentType?: "CC" | "CE" | "PA" | "TI" | undefined;
     documentNumber?: string | undefined;
     fullName?: string | undefined;
     birthDate?: string | undefined;
     gender?: "M" | "F" | "Otro" | undefined;
+    email?: string | undefined;
     phone?: string | undefined;
     address?: string | undefined;
     isActive?: boolean | undefined;

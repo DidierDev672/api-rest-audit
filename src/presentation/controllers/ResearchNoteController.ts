@@ -32,20 +32,7 @@ export class ResearchNoteController {
 
   static async findAll(req: Request, res: Response) {
     try {
-      const { research_id } = req.query;
-      if (!research_id || typeof research_id !== 'string') {
-        res.status(400).json({ error: 'research_id query parameter is required' });
-        return;
-      }
-
-      IdValidator.validate(research_id, 'Investigación');
-
-      const research = await auditoryResearchRepository.findById(research_id);
-      if (!research) {
-        throw new AppError(`Investigación con ID ${research_id} no encontrada`, 404);
-      }
-
-      const notes = await repository.findByResearchId(research_id);
+      const notes = await repository.findAll();
       res.json(notes);
     } catch (error) {
       if (error instanceof ZodError) {

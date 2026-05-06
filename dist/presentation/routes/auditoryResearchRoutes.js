@@ -8,7 +8,7 @@ router.get('/', controllers_1.AuditoryResearchController.findAll);
 router.get('/:id', controllers_1.AuditoryResearchController.findById);
 router.put('/:id', controllers_1.AuditoryResearchController.update);
 router.delete('/:id', controllers_1.AuditoryResearchController.delete);
-router.post('/:id/notes', controllers_1.ResearchNoteController.createNotes);
-router.post('/:id/chat-sessions', controllers_1.ResearchChatSessionController.createSession);
+router.post('/:idResearch/chat-sessions', controllers_1.ResearchChatSessionController.createSession);
+router.get('/:idResearch/chat-sessions/:idSession', controllers_1.ResearchChatSessionController.findById);
 exports.default = router;
 //# sourceMappingURL=auditoryResearchRoutes.js.map

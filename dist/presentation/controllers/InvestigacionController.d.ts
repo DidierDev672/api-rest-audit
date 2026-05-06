@@ -1,0 +1,7 @@
+import { Request, Response } from 'express';
+export declare class InvestigacionController {
+    static create(req: Request, res: Response): Promise<void>;
+    static findAll(req: Request, res: Response): Promise<void>;
+    static findById(req: Request, res: Response): Promise<void>;
+}
+//# sourceMappingURL=InvestigacionController.d.ts.map

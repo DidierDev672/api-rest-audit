@@ -154,8 +154,8 @@ export declare const UpdateTinnitusQuestionnaireSchema: z.ZodObject<{
         id?: string | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
         description: string;
         title: string;
@@ -167,8 +167,8 @@ export declare const UpdateTinnitusQuestionnaireSchema: z.ZodObject<{
         id?: string | undefined;
     }[] | undefined;
 }, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
         description: string;
         title: string;
@@ -286,8 +286,8 @@ export declare const UpdateTinnitusQuestionnaireDTO: z.ZodObject<{
         id?: string | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
         description: string;
         title: string;
@@ -299,8 +299,8 @@ export declare const UpdateTinnitusQuestionnaireDTO: z.ZodObject<{
         id?: string | undefined;
     }[] | undefined;
 }, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
         description: string;
         title: string;

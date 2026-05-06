@@ -9,13 +9,13 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
             content: z.ZodString;
             timestamp: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }, {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }>, "many">>;
         summary: z.ZodOptional<z.ZodString>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -23,28 +23,28 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     }, {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     }>;
     metadata: z.ZodOptional<z.ZodObject<{
         totalMessages: z.ZodOptional<z.ZodNumber>;
@@ -69,16 +69,16 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
     researchId: string;
     session: {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     };
     metadata?: {
         totalMessages?: number | undefined;
@@ -91,16 +91,16 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
     researchId: string;
     session: {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     };
     metadata?: {
         totalMessages?: number | undefined;
@@ -120,13 +120,13 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
             content: z.ZodString;
             timestamp: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }, {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }>, "many">>;
         summary: z.ZodOptional<z.ZodString>;
         tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -134,28 +134,28 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     }, {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     }>;
     metadata: z.ZodOptional<z.ZodObject<{
         totalMessages: z.ZodOptional<z.ZodNumber>;
@@ -180,16 +180,16 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
     researchId: string;
     session: {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     };
     metadata?: {
         totalMessages?: number | undefined;
@@ -202,16 +202,16 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
     researchId: string;
     session: {
         title: string;
-        createdAt?: string | undefined;
-        updatedAt?: string | undefined;
         originalDescription?: string | undefined;
         messages?: {
-            timestamp: string;
             role: "user" | "assistant";
             content: string;
+            timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
         tags?: string[] | undefined;
+        createdAt?: string | undefined;
+        updatedAt?: string | undefined;
     };
     metadata?: {
         totalMessages?: number | undefined;

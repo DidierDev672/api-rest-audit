@@ -1,5 +1,4 @@
 export * from './AuditoryResearchUseCases';
-export * from './ResearchNoteUseCases';
 export * from './ResearchChatSessionUseCases';
 export * from './TinnitusQuestionnaireUseCases';
 export * from './TinnitusResponseUseCases';
@@ -14,4 +13,6 @@ export * from './ScreeningResponseUseCases';
 export * from './ScreeningNoteUseCases';
 export * from './DoctorUseCases';
 export * from './DoctorProfessionalDataUseCases';
+export * from './InvestigacionUseCases';
+export * from './TinnitusAnalysisUseCases';
 //# sourceMappingURL=index.d.ts.map

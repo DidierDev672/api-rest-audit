@@ -13,4 +13,7 @@ export * from './PatientLoginDTO';
 export * from './ScreeningNoteDTO';
 export * from './DoctorDTO';
 export * from './DoctorProfessionalDataDTO';
+export * from './InvestigacionDTO';
+export * from './ResearchAnalysisDTO';
+export * from './TinnitusAnalysisDTO';
 //# sourceMappingURL=index.d.ts.map

@@ -24,6 +24,7 @@ export declare class ResearchChatSessionRepository {
         metadata: ResearchChatSessionMetadata | null;
     }>;
     findByResearchId(researchId: string): Promise<ResearchChatSession[]>;
+    findById(sessionId: string): Promise<ResearchChatSession | null>;
     private mapSessionToEntity;
     private mapMetadataToEntity;
 }

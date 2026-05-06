@@ -30,4 +30,7 @@ __exportStar(require("./ScreeningResponseController"), exports);
 __exportStar(require("./ScreeningNoteController"), exports);
 __exportStar(require("./DoctorController"), exports);
 __exportStar(require("./DoctorProfessionalDataController"), exports);
+__exportStar(require("./InvestigacionController"), exports);
+__exportStar(require("./ResearchAnalysisController"), exports);
+__exportStar(require("./TinnitusAnalysisController"), exports);
 //# sourceMappingURL=index.js.map

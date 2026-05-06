@@ -1,4 +1,5 @@
 export * from './auditoryResearchRoutes';
+export * from './researchNoteRoutes';
 export * from './tinnitusQuestionnaireRoutes';
 export * from './tinnitusResponseRoutes';
 export * from './tinnitusNoteRoutes';
@@ -12,4 +13,7 @@ export * from './screeningResponseRoutes';
 export * from './screeningNoteRoutes';
 export * from './doctorRoutes';
 export * from './doctorProfessionalDataRoutes';
+export * from './investigacionRoutes';
+export * from './researchAnalysisRoutes';
+export * from './tinnitusAnalysisRoutes';
 //# sourceMappingURL=index.d.ts.map

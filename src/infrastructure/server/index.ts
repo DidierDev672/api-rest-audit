@@ -18,6 +18,8 @@ import tinnitusResponseRoutes from '../../presentation/routes/tinnitusResponseRo
 import tinnitusNoteRoutes from '../../presentation/routes/tinnitusNoteRoutes';
 import investigacionRoutes from '../../presentation/routes/investigacionRoutes';
 import researchAnalysisRoutes from '../../presentation/routes/researchAnalysisRoutes';
+import tinnitusAnalysisRoutes from '../../presentation/routes/tinnitusAnalysisRoutes';
+import tinnitusNotesAnalysisRoutes from '../../presentation/routes/tinnitusNotesAnalysisRoutes';
 import { Logger } from '../logger/Logger';
 import { errorHandler, notFoundHandler, requestLogger } from '../middleware/errorHandler';
 
@@ -49,8 +51,8 @@ app.use('/api/v1/doctors', doctorRoutes);
 app.use('/api/v1/doctor-professional-data', doctorProfessionalDataRoutes);
 app.use('/api/v1/tinnitus-responses', tinnitusResponseRoutes);
 app.use('/api/v1/tinnitus-notes', tinnitusNoteRoutes);
-app.use('/api/v1/investigaciones', investigacionRoutes);
-app.use('/api/v1/research-analysis', researchAnalysisRoutes);
+app.use('/api/v1/tinnitus-analysis', tinnitusAnalysisRoutes);
+app.use('/api/v1/tinnitus-notes-analysis', tinnitusNotesAnalysisRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

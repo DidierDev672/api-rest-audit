@@ -30,10 +30,10 @@ export declare const CreateDoctorProfessionalDataSchema: z.ZodObject<{
     university: string;
     country: string;
     id_doctor: string;
-    rethus_registration: string;
-    professional_card_number: string;
     professional_title: string;
     graduation_year: number;
+    professional_card_number: string;
+    rethus_registration: string;
     registration_status: "active" | "inactive" | "suspended";
     additional_certifications: {
         name: string;
@@ -41,21 +41,21 @@ export declare const CreateDoctorProfessionalDataSchema: z.ZodObject<{
         year: number;
     }[];
     specialty_certificates_url: string[];
-    subspecialty?: string | undefined;
     medical_specialty?: string | undefined;
+    subspecialty?: string | undefined;
     diploma_url?: string | undefined;
     degree_certificate_url?: string | undefined;
 }, {
     university: string;
     country: string;
     id_doctor: string;
-    rethus_registration: string;
-    professional_card_number: string;
     professional_title: string;
     graduation_year: number;
-    subspecialty?: string | undefined;
+    professional_card_number: string;
+    rethus_registration: string;
     registration_status?: "active" | "inactive" | "suspended" | undefined;
     medical_specialty?: string | undefined;
+    subspecialty?: string | undefined;
     additional_certifications?: {
         name: string;
         institution: string;
@@ -93,15 +93,15 @@ export declare const UpdateDoctorProfessionalDataSchema: z.ZodObject<{
     specialty_certificates_url: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     is_verified: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
+    professional_title?: string | undefined;
     university?: string | undefined;
     country?: string | undefined;
-    subspecialty?: string | undefined;
-    rethus_registration?: string | undefined;
-    professional_card_number?: string | undefined;
-    professional_title?: string | undefined;
     graduation_year?: number | undefined;
+    professional_card_number?: string | undefined;
+    rethus_registration?: string | undefined;
     registration_status?: "active" | "inactive" | "suspended" | undefined;
     medical_specialty?: string | undefined;
+    subspecialty?: string | undefined;
     additional_certifications?: {
         name: string;
         institution: string;
@@ -112,15 +112,15 @@ export declare const UpdateDoctorProfessionalDataSchema: z.ZodObject<{
     specialty_certificates_url?: string[] | undefined;
     is_verified?: boolean | undefined;
 }, {
+    professional_title?: string | undefined;
     university?: string | undefined;
     country?: string | undefined;
-    subspecialty?: string | undefined;
-    rethus_registration?: string | undefined;
-    professional_card_number?: string | undefined;
-    professional_title?: string | undefined;
     graduation_year?: number | undefined;
+    professional_card_number?: string | undefined;
+    rethus_registration?: string | undefined;
     registration_status?: "active" | "inactive" | "suspended" | undefined;
     medical_specialty?: string | undefined;
+    subspecialty?: string | undefined;
     additional_certifications?: {
         name: string;
         institution: string;

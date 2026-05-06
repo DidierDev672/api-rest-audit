@@ -10,10 +10,10 @@ const repository = new database_1.ResearchChatSessionRepository();
 class ResearchChatSessionController {
     static async createSession(req, res) {
         try {
-            const { id } = req.params;
+            const { idResearch } = req.params;
             const data = dto_1.CreateResearchChatSessionDTO.parse({
                 ...req.body,
-                researchId: id,
+                researchId: idResearch,
             });
             const useCase = new usecases_1.CreateResearchChatSessionUseCase(repository);
             const result = await useCase.execute(data);
@@ -25,6 +25,22 @@ class ResearchChatSessionController {
                 return;
             }
             Logger_1.Logger.danger('Error en ResearchChatSessionController.createSession', { error: error.message });
+            res.status(500).json({ error: error.message });
+        }
+    }
+    static async findById(req, res) {
+        try {
+            const { idSession } = req.params;
+            const useCase = new usecases_1.FindResearchChatSessionByIdUseCase(repository);
+            const session = await useCase.execute(idSession);
+            if (!session) {
+                res.status(404).json({ error: 'Chat session no encontrada' });
+                return;
+            }
+            res.status(200).json(session);
+        }
+        catch (error) {
+            Logger_1.Logger.danger('Error en ResearchChatSessionController.findById', { error: error.message });
             res.status(500).json({ error: error.message });
         }
     }

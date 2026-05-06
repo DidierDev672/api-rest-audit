@@ -21,15 +21,15 @@ export declare const UpdateTinnitusNoteSchema: z.ZodObject<{
     id_tinnitus_response: z.ZodOptional<z.ZodString>;
     description: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     id_patient?: string | undefined;
     id_tinnitus_questionnaires?: string | undefined;
     id_tinnitus_response?: string | undefined;
+    description?: string | undefined;
 }, {
-    description?: string | undefined;
     id_patient?: string | undefined;
     id_tinnitus_questionnaires?: string | undefined;
     id_tinnitus_response?: string | undefined;
+    description?: string | undefined;
 }>;
 export type CreateTinnitusNoteDTO = z.infer<typeof CreateTinnitusNoteSchema>;
 export type UpdateTinnitusNoteDTO = z.infer<typeof UpdateTinnitusNoteSchema>;

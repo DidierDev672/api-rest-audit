@@ -21,5 +21,6 @@ export interface IResearchChatSessionRepository {
         metadata: ResearchChatSessionMetadata | null;
     }>;
     findByResearchId(researchId: string): Promise<ResearchChatSession[]>;
+    findById(sessionId: string): Promise<ResearchChatSession | null>;
 }
 //# sourceMappingURL=IResearchChatSessionRepository.d.ts.map

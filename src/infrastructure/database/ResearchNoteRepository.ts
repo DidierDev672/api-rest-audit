@@ -35,6 +35,23 @@ export class ResearchNoteRepository implements IResearchNoteRepository {
     Logger.success('Nota de investigacion creada');
   }
 
+  async findAll(): Promise<ResearchNote[]> {
+    Logger.info('Obteniendo todas las notas de investigacion');
+    
+    const { data, error } = await supabase
+      .from(this.table)
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      Logger.danger('Error al obtener todas las notas de investigacion', { error: error.message });
+      throw new Error(error.message);
+    }
+
+    Logger.success('Todas las notas de investigacion obtenidas', { count: data.length });
+    return data.map(this.mapToEntity);
+  }
+
   async findByResearchId(researchId: string): Promise<ResearchNote[]> {
     Logger.info('Obteniendo notas por research ID', { researchId });
 

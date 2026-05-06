@@ -1,8 +1,16 @@
 import { ResearchNote } from '../../domain/entities';
-import { IResearchNoteRepository } from '../../domain/repositories';
+import { ResearchNoteRepository as IResearchNoteRepository } from '../../domain/repositories';
 export declare class ResearchNoteRepository implements IResearchNoteRepository {
     private readonly table;
-    createMany(notes: Omit<ResearchNote, 'createdAt' | 'updatedAt'>[]): Promise<ResearchNote[]>;
+    create(note: {
+        id: string;
+        research_id: string;
+        id_note: string;
+        text: string;
+        color: string;
+        color_name: string;
+    }): Promise<void>;
+    findAll(): Promise<ResearchNote[]>;
     findByResearchId(researchId: string): Promise<ResearchNote[]>;
     deleteByResearchId(researchId: string): Promise<void>;
     private mapToEntity;

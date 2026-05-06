@@ -15,23 +15,13 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 }) : function(o, v) {
     o["default"] = v;
 });
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -40,6 +30,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv = __importStar(require("dotenv"));
 const auditoryResearchRoutes_1 = __importDefault(require("../../presentation/routes/auditoryResearchRoutes"));
+const researchNoteRoutes_1 = __importDefault(require("../../presentation/routes/researchNoteRoutes"));
 const tinnitusQuestionnaireRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusQuestionnaireRoutes"));
 const screeningRoutes_1 = __importDefault(require("../../presentation/routes/screeningRoutes"));
 const relaxingSoundsRoutes_1 = __importDefault(require("../../presentation/routes/relaxingSoundsRoutes"));
@@ -53,6 +44,9 @@ const doctorRoutes_1 = __importDefault(require("../../presentation/routes/doctor
 const doctorProfessionalDataRoutes_1 = __importDefault(require("../../presentation/routes/doctorProfessionalDataRoutes"));
 const tinnitusResponseRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusResponseRoutes"));
 const tinnitusNoteRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusNoteRoutes"));
+const investigacionRoutes_1 = __importDefault(require("../../presentation/routes/investigacionRoutes"));
+const researchAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/researchAnalysisRoutes"));
+const tinnitusAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusAnalysisRoutes"));
 const Logger_1 = require("../logger/Logger");
 const errorHandler_1 = require("../middleware/errorHandler");
 dotenv.config();
@@ -65,6 +59,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'OK', message: 'Auditory API is running' });
 });
 app.use('/api/v1/research', auditoryResearchRoutes_1.default);
+app.use('/api/v1/research-notes', researchNoteRoutes_1.default);
 app.use('/api/v1/questionnaires', tinnitusQuestionnaireRoutes_1.default);
 app.use('/api/v1/screenings', screeningRoutes_1.default);
 app.use('/api/v1/relaxing-sounds', relaxingSoundsRoutes_1.default);
@@ -78,6 +73,9 @@ app.use('/api/v1/doctors', doctorRoutes_1.default);
 app.use('/api/v1/doctor-professional-data', doctorProfessionalDataRoutes_1.default);
 app.use('/api/v1/tinnitus-responses', tinnitusResponseRoutes_1.default);
 app.use('/api/v1/tinnitus-notes', tinnitusNoteRoutes_1.default);
+app.use('/api/v1/investigaciones', investigacionRoutes_1.default);
+app.use('/api/v1/research-analysis', researchAnalysisRoutes_1.default);
+app.use('/api/v1/tinnitus-analysis', tinnitusAnalysisRoutes_1.default);
 app.use(errorHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 app.listen(PORT, () => {

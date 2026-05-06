@@ -1,130 +1,47 @@
 import { z } from 'zod';
-declare const NoteItemSchema: z.ZodObject<{
+export declare const CreateResearchNoteSchema: z.ZodObject<{
     id: z.ZodString;
+    research_id: z.ZodString;
+    id_note: z.ZodString;
     text: z.ZodString;
     color: z.ZodString;
-    colorName: z.ZodString;
-    createdAt: z.ZodString;
-    sourceMessageIndex: z.ZodOptional<z.ZodNumber>;
-    sourceContent: z.ZodOptional<z.ZodString>;
+    color_name: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     id: string;
-    createdAt: string;
     text: string;
     color: string;
-    colorName: string;
-    sourceMessageIndex?: number | undefined;
-    sourceContent?: string | undefined;
+    research_id: string;
+    id_note: string;
+    color_name: string;
 }, {
     id: string;
-    createdAt: string;
     text: string;
     color: string;
-    colorName: string;
-    sourceMessageIndex?: number | undefined;
-    sourceContent?: string | undefined;
+    research_id: string;
+    id_note: string;
+    color_name: string;
 }>;
-export declare const CreateResearchNotesSchema: z.ZodObject<{
-    researchId: z.ZodString;
-    notes: z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
-        text: z.ZodString;
-        color: z.ZodString;
-        colorName: z.ZodString;
-        createdAt: z.ZodString;
-        sourceMessageIndex: z.ZodOptional<z.ZodNumber>;
-        sourceContent: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }, {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }>, "many">;
+export declare const CreateResearchNoteDTO: z.ZodObject<{
+    id: z.ZodString;
+    research_id: z.ZodString;
+    id_note: z.ZodString;
+    text: z.ZodString;
+    color: z.ZodString;
+    color_name: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    researchId: string;
-    notes: {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }[];
+    id: string;
+    text: string;
+    color: string;
+    research_id: string;
+    id_note: string;
+    color_name: string;
 }, {
-    researchId: string;
-    notes: {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }[];
+    id: string;
+    text: string;
+    color: string;
+    research_id: string;
+    id_note: string;
+    color_name: string;
 }>;
-export declare const CreateResearchNotesDTO: z.ZodObject<{
-    researchId: z.ZodString;
-    notes: z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
-        text: z.ZodString;
-        color: z.ZodString;
-        colorName: z.ZodString;
-        createdAt: z.ZodString;
-        sourceMessageIndex: z.ZodOptional<z.ZodNumber>;
-        sourceContent: z.ZodOptional<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }, {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }>, "many">;
-}, "strip", z.ZodTypeAny, {
-    researchId: string;
-    notes: {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }[];
-}, {
-    researchId: string;
-    notes: {
-        id: string;
-        createdAt: string;
-        text: string;
-        color: string;
-        colorName: string;
-        sourceMessageIndex?: number | undefined;
-        sourceContent?: string | undefined;
-    }[];
-}>;
-export type CreateResearchNotesDTO = z.infer<typeof CreateResearchNotesSchema>;
-export type NoteItemDTO = z.infer<typeof NoteItemSchema>;
-export {};
+export type CreateResearchNoteDTO = z.infer<typeof CreateResearchNoteSchema>;
 //# sourceMappingURL=ResearchNoteDTO.d.ts.map

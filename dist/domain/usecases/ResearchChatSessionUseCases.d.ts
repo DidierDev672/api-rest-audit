@@ -28,4 +28,9 @@ export declare class CreateResearchChatSessionUseCase {
         metadata: ResearchChatSessionMetadata | null;
     }>;
 }
+export declare class FindResearchChatSessionByIdUseCase {
+    private readonly repository;
+    constructor(repository: IResearchChatSessionRepository);
+    execute(sessionId: string): Promise<ResearchChatSession | null>;
+}
 //# sourceMappingURL=ResearchChatSessionUseCases.d.ts.map

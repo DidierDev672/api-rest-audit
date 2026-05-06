@@ -30,4 +30,7 @@ __exportStar(require("./PatientLoginRepository"), exports);
 __exportStar(require("./ScreeningNoteRepository"), exports);
 __exportStar(require("./DoctorRepository"), exports);
 __exportStar(require("./DoctorProfessionalDataRepository"), exports);
+__exportStar(require("./InvestigacionRepository"), exports);
+__exportStar(require("./ResearchAnalysisRepository"), exports);
+__exportStar(require("./TinnitusAnalysisRepository"), exports);
 //# sourceMappingURL=index.js.map

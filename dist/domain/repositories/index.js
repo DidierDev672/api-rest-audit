@@ -29,4 +29,7 @@ __exportStar(require("./IScreeningNoteRepository"), exports);
 __exportStar(require("./ITinnitusNoteRepository"), exports);
 __exportStar(require("./IDoctorRepository"), exports);
 __exportStar(require("./IDoctorProfessionalDataRepository"), exports);
+__exportStar(require("./IInvestigacionRepository"), exports);
+__exportStar(require("./IResearchAnalysisRepository"), exports);
+__exportStar(require("./ITinnitusAnalysisRepository"), exports);
 //# sourceMappingURL=index.js.map

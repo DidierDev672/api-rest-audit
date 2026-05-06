@@ -13,4 +13,7 @@ export * from './IScreeningNoteRepository';
 export * from './ITinnitusNoteRepository';
 export * from './IDoctorRepository';
 export * from './IDoctorProfessionalDataRepository';
+export * from './IInvestigacionRepository';
+export * from './IResearchAnalysisRepository';
+export * from './ITinnitusAnalysisRepository';
 //# sourceMappingURL=index.d.ts.map

@@ -60,9 +60,9 @@ export declare const CreatePatientSchema: z.ZodObject<{
     hasConsent: z.ZodEffects<z.ZodBoolean, boolean, boolean>;
 }, "strip", z.ZodTypeAny, {
     hasConsent: boolean;
+    fullName: string;
     documentType: "Tarjeta de Identidad" | "Cedula de ciudadania" | "Pasaporte" | "Tarjeta de extranjero";
     documentNumber: string;
-    fullName: string;
     birthDate: string;
     height: number;
     weight: number;
@@ -81,9 +81,9 @@ export declare const CreatePatientSchema: z.ZodObject<{
     };
 }, {
     hasConsent: boolean;
+    fullName: string;
     documentType: "Tarjeta de Identidad" | "Cedula de ciudadania" | "Pasaporte" | "Tarjeta de extranjero";
     documentNumber: string;
-    fullName: string;
     birthDate: string;
     height: number;
     weight: number;
@@ -160,9 +160,9 @@ export declare const UpdatePatientSchema: z.ZodObject<{
         };
     }>>;
 }, "strip", z.ZodTypeAny, {
+    fullName?: string | undefined;
     documentType?: "Tarjeta de Identidad" | "Cedula de ciudadania" | "Pasaporte" | "Tarjeta de extranjero" | undefined;
     documentNumber?: string | undefined;
-    fullName?: string | undefined;
     birthDate?: string | undefined;
     height?: number | undefined;
     weight?: number | undefined;
@@ -180,9 +180,9 @@ export declare const UpdatePatientSchema: z.ZodObject<{
         };
     } | undefined;
 }, {
+    fullName?: string | undefined;
     documentType?: "Tarjeta de Identidad" | "Cedula de ciudadania" | "Pasaporte" | "Tarjeta de extranjero" | undefined;
     documentNumber?: string | undefined;
-    fullName?: string | undefined;
     birthDate?: string | undefined;
     height?: number | undefined;
     weight?: number | undefined;

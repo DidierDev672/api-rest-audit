@@ -31,11 +31,11 @@ export declare const ScreeningResponseUseCases: {
      * Update a screening response
      */
     update(id: string, data: {
-        options_answer?: Array<{
+        options_answer?: {
             id: string;
             text: string;
             value: number;
-        }>;
+        }[] | undefined;
     }): Promise<any>;
     /**
      * Delete a screening response

@@ -17,12 +17,12 @@ export declare const UpdateRelaxingSoundSchema: z.ZodObject<{
     description: z.ZodOptional<z.ZodString>;
     sound: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     sound?: string | undefined;
 }, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     sound?: string | undefined;
 }>;
 export declare const CreateRelaxingSoundDTO: z.ZodObject<{
@@ -43,12 +43,12 @@ export declare const UpdateRelaxingSoundDTO: z.ZodObject<{
     description: z.ZodOptional<z.ZodString>;
     sound: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     sound?: string | undefined;
 }, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     sound?: string | undefined;
 }>;
 export type CreateRelaxingSoundDTO = z.infer<typeof CreateRelaxingSoundSchema>;

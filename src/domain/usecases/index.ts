@@ -14,3 +14,5 @@ export * from './ScreeningNoteUseCases';
 export * from './DoctorUseCases';
 export * from './DoctorProfessionalDataUseCases';
 export * from './InvestigacionUseCases';
+export * from './TinnitusAnalysisUseCases';
+export * from './TinnitusNotesAnalysisUseCases';

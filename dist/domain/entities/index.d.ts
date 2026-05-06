@@ -191,5 +191,35 @@ export interface DoctorProfessionalData extends Entity {
     specialtyCertificatesUrl: string[];
     isVerified: boolean;
 }
+export interface Investigacion {
+    id_resource: string;
+    content_resource: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+export interface ResearchAnalysis {
+    id?: string;
+    researchId: string;
+    analysis: {
+        summary: string;
+        generatedAt: string;
+        model: string;
+    };
+    notesCount: number;
+    notesReferences: Array<{
+        id: string;
+        createdAt: string;
+        updatedAt: string;
+    }>;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
 export * from './PatientLoginEntity';
+export interface TinnitusAnalysis extends Entity {
+    idPatient: string;
+    idTinnitusQuestionnaires: string;
+    idTinnitusResponse: string;
+    analysis: string;
+    model: string;
+}
 //# sourceMappingURL=index.d.ts.map

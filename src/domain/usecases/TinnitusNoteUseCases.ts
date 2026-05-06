@@ -8,6 +8,8 @@ export interface CreateTinnitusNoteData {
   idTinnitusQuestionnaires: string;
   idTinnitusResponse: string;
   description: string;
+  color?: string;
+  source?: string;
 }
 
 export class CreateTinnitusNoteUseCase {
@@ -33,6 +35,8 @@ export class CreateTinnitusNoteUseCase {
         idTinnitusQuestionnaires: data.idTinnitusQuestionnaires,
         idTinnitusResponse: data.idTinnitusResponse,
         description: data.description,
+        color: data.color,
+        source: data.source,
       });
 
       Logger.success('Nota de tinnitus creada exitosamente', { id: result.id });

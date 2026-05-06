@@ -14,4 +14,7 @@ export * from './PatientLoginRepository';
 export * from './ScreeningNoteRepository';
 export * from './DoctorRepository';
 export * from './DoctorProfessionalDataRepository';
+export * from './InvestigacionRepository';
+export * from './ResearchAnalysisRepository';
+export * from './TinnitusAnalysisRepository';
 //# sourceMappingURL=index.d.ts.map

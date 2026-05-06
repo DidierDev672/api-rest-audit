@@ -15,3 +15,5 @@ export * from './doctorRoutes';
 export * from './doctorProfessionalDataRoutes';
 export * from './investigacionRoutes';
 export * from './researchAnalysisRoutes';
+export * from './tinnitusAnalysisRoutes';
+export * from './tinnitusNotesAnalysisRoutes';

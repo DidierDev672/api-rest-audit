@@ -157,6 +157,8 @@ export interface TinnitusNote extends Entity {
   idTinnitusQuestionnaires: string;
   idTinnitusResponse: string;
   description: string;
+  color?: string;
+  source?: string;
 }
 
 export interface TinnitusAssignmentValidationResult {
@@ -245,4 +247,22 @@ export interface ResearchAnalysis {
   updatedAt?: Date;
 }
 
-export * from './PatientLoginEntity';
+export * from './PatientLoginEntity'
+
+export interface TinnitusAnalysis extends Entity {
+  idPatient: string;
+  idTinnitusQuestionnaires: string;
+  idTinnitusResponse: string;
+  analysis: string;
+  model: string;
+}
+
+export interface TinnitusNotesAnalysis extends Entity {
+  idPatient: string;
+  idTinnitusQuestionnaires?: string;
+  idTinnitusResponse?: string;
+  analysis: string;
+  noteCount?: number;
+  analyzedAt?: Date;
+  createdBy?: string;
+};

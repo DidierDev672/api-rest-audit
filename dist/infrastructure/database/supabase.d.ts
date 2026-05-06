@@ -7,7 +7,7 @@ declare class SafeSupabaseClient {
         error: any;
     }>): Promise<T>;
     getClient(): SupabaseClient<any>;
-    from(table: string): import("@supabase/postgrest-js").PostgrestQueryBuilder<any, any, any, string, unknown>;
+    from(table: string): any;
 }
 export declare const supabase: SafeSupabaseClient;
 export {};

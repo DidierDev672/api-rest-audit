@@ -11,7 +11,7 @@ export declare const RegisterPatientLoginSchema: z.ZodObject<{
     idPatient: string;
     email: string;
     username: string;
-    permits: ("user" | "patient" | "doctor" | "administrator" | "super_administrator")[];
+    permits: ("patient" | "user" | "doctor" | "administrator" | "super_administrator")[];
     hasConsent: boolean;
 }, {
     password: string;
@@ -19,7 +19,7 @@ export declare const RegisterPatientLoginSchema: z.ZodObject<{
     email: string;
     username: string;
     hasConsent: boolean;
-    permits?: ("user" | "patient" | "doctor" | "administrator" | "super_administrator")[] | undefined;
+    permits?: ("patient" | "user" | "doctor" | "administrator" | "super_administrator")[] | undefined;
 }>;
 export declare const LoginSchema: z.ZodEffects<z.ZodObject<{
     email: z.ZodOptional<z.ZodString>;

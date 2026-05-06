@@ -29,4 +29,7 @@ __exportStar(require("./PatientLoginDTO"), exports);
 __exportStar(require("./ScreeningNoteDTO"), exports);
 __exportStar(require("./DoctorDTO"), exports);
 __exportStar(require("./DoctorProfessionalDataDTO"), exports);
+__exportStar(require("./InvestigacionDTO"), exports);
+__exportStar(require("./ResearchAnalysisDTO"), exports);
+__exportStar(require("./TinnitusAnalysisDTO"), exports);
 //# sourceMappingURL=index.js.map

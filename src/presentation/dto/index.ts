@@ -15,3 +15,5 @@ export * from './DoctorDTO';
 export * from './DoctorProfessionalDataDTO';
 export * from './InvestigacionDTO';
 export * from './ResearchAnalysisDTO';
+export * from './TinnitusAnalysisDTO';
+export * from './TinnitusNotesAnalysisDTO';

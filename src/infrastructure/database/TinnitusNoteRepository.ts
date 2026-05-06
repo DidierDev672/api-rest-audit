@@ -5,7 +5,7 @@ import { ITinnitusNoteRepository } from '../../domain/repositories';
 import { Logger } from '../logger/Logger';
 
 export class TinnitusNoteRepository implements ITinnitusNoteRepository {
-  private readonly table = 'notes_tinnitus_responses';
+  private readonly table = 'tinnitus_notes';
 
   async create(data: Omit<TinnitusNote, 'id' | 'createdAt' | 'updatedAt'>): Promise<TinnitusNote> {
     const id = uuidv4();
@@ -13,9 +13,7 @@ export class TinnitusNoteRepository implements ITinnitusNoteRepository {
 
     Logger.info('Creando nota de tinnitus', { patientId: data.idPatient, questionnaireId: data.idTinnitusQuestionnaires });
 
-    const { data: result, error } = await supabase
-      .from(this.table)
-      .insert({
+    const insertData: any = {
         id,
         id_patient: data.idPatient,
         id_tinnitus_questionnaires: data.idTinnitusQuestionnaires,
@@ -23,7 +21,14 @@ export class TinnitusNoteRepository implements ITinnitusNoteRepository {
         description: data.description,
         created_at: now,
         updated_at: now,
-      })
+      };
+    
+    if (data.color !== undefined) insertData.color = data.color;
+    if (data.source !== undefined) insertData.source = data.source;
+
+    const { data: result, error } = await supabase
+      .from(this.table)
+      .insert(insertData)
       .select()
       .single();
 
@@ -135,6 +140,8 @@ export class TinnitusNoteRepository implements ITinnitusNoteRepository {
     if (data.idTinnitusQuestionnaires !== undefined) updateData.id_tinnitus_questionnaires = data.idTinnitusQuestionnaires;
     if (data.idTinnitusResponse !== undefined) updateData.id_tinnitus_response = data.idTinnitusResponse;
     if (data.description !== undefined) updateData.description = data.description;
+    if (data.color !== undefined && data.color !== null) updateData.color = data.color;
+    if (data.source !== undefined && data.source !== null) updateData.source = data.source;
 
     const { data: result, error } = await supabase
       .from(this.table)
@@ -175,6 +182,8 @@ export class TinnitusNoteRepository implements ITinnitusNoteRepository {
       idTinnitusQuestionnaires: data.id_tinnitus_questionnaires,
       idTinnitusResponse: data.id_tinnitus_response,
       description: data.description,
+      color: data.color || undefined,
+      source: data.source || undefined,
       createdAt: new Date(data.created_at),
       updatedAt: new Date(data.updated_at),
     };

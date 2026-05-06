@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./auditoryResearchRoutes"), exports);
+__exportStar(require("./researchNoteRoutes"), exports);
 __exportStar(require("./tinnitusQuestionnaireRoutes"), exports);
 __exportStar(require("./tinnitusResponseRoutes"), exports);
 __exportStar(require("./tinnitusNoteRoutes"), exports);
@@ -28,4 +29,7 @@ __exportStar(require("./screeningResponseRoutes"), exports);
 __exportStar(require("./screeningNoteRoutes"), exports);
 __exportStar(require("./doctorRoutes"), exports);
 __exportStar(require("./doctorProfessionalDataRoutes"), exports);
+__exportStar(require("./investigacionRoutes"), exports);
+__exportStar(require("./researchAnalysisRoutes"), exports);
+__exportStar(require("./tinnitusAnalysisRoutes"), exports);
 //# sourceMappingURL=index.js.map

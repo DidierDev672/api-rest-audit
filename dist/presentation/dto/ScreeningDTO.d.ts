@@ -21,53 +21,53 @@ export declare const CreateScreeningSchema: z.ZodObject<{
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }, {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     description: string;
     title: string;
     questions: {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }[];
 }, {
     description: string;
     title: string;
     questions: {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }[];
 }>;
 export declare const UpdateScreeningSchema: z.ZodObject<{
@@ -92,53 +92,53 @@ export declare const UpdateScreeningSchema: z.ZodObject<{
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }, {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }[] | undefined;
 }, {
-    description?: string | undefined;
     title?: string | undefined;
+    description?: string | undefined;
     questions?: {
-        sound: string;
         optionsAnswer: {
             text: string;
             value: number;
             id?: string | undefined;
         }[];
+        sound: string;
         id?: string | undefined;
-        description?: string | undefined;
         title?: string | undefined;
+        description?: string | undefined;
     }[] | undefined;
 }>;
 export type CreateScreeningDTO = z.infer<typeof CreateScreeningSchema>;
