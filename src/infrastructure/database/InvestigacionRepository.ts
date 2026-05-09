@@ -45,6 +45,32 @@ export class InvestigacionRepository implements IInvestigacionRepository {
     return this.mapToEntity(data);
   }
 
+  async update(id_resource: string, data: Partial<Investigacion>): Promise<Investigacion> {
+    const now = new Date();
+
+    const updateData: any = { updated_at: now };
+    if (data.content_resource !== undefined) updateData.content_resource = data.content_resource;
+
+    const { data: result, error } = await supabase
+      .from(this.table)
+      .update(updateData)
+      .eq('id_resource', id_resource)
+      .select()
+      .single();
+
+    if (error) throw new Error(error.message);
+    return this.mapToEntity(result);
+  }
+
+  async delete(id_resource: string): Promise<void> {
+    const { error } = await supabase
+      .from(this.table)
+      .delete()
+      .eq('id_resource', id_resource);
+
+    if (error) throw new Error(error.message);
+  }
+
   private mapToEntity(data: any): Investigacion {
     return {
       id_resource: data.id_resource,

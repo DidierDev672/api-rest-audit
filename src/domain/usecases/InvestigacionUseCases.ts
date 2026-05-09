@@ -70,3 +70,54 @@ export class GetInvestigacionByIdUseCase {
     }
   }
 }
+
+export class UpdateInvestigacionUseCase {
+  constructor(private readonly repository: IInvestigacionRepository) {}
+
+  async execute(id_resource: string, data: { content_resource: string }): Promise<Investigacion> {
+    try {
+      IdValidator.validate(id_resource, 'Investigacion');
+      Logger.info('Actualizando investigación', { id_resource });
+
+      if (!data.content_resource || data.content_resource.trim() === '') {
+        throw new Error('content_resource es requerido y no puede estar vacío');
+      }
+
+      const existing = await this.repository.findById(id_resource);
+      if (!existing) {
+        throw new Error('Investigación no encontrada');
+      }
+
+      const result = await this.repository.update(id_resource, data);
+
+      Logger.success('Investigación actualizada exitosamente', { id_resource });
+      return result;
+    } catch (error) {
+      Logger.danger('Error al actualizar investigación', { error: (error as Error).message });
+      throw error;
+    }
+  }
+}
+
+export class DeleteInvestigacionUseCase {
+  constructor(private readonly repository: IInvestigacionRepository) {}
+
+  async execute(id_resource: string): Promise<void> {
+    try {
+      IdValidator.validate(id_resource, 'Investigacion');
+      Logger.info('Eliminando investigación', { id_resource });
+
+      const existing = await this.repository.findById(id_resource);
+      if (!existing) {
+        throw new Error('Investigación no encontrada');
+      }
+
+      await this.repository.delete(id_resource);
+
+      Logger.success('Investigación eliminada exitosamente', { id_resource });
+    } catch (error) {
+      Logger.danger('Error al eliminar investigación', { error: (error as Error).message });
+      throw error;
+    }
+  }
+}

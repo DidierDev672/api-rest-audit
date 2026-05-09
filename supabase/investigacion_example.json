@@ -6,12 +6,12 @@
       "Content-Type": "application/json"
     },
     "body": {
-      "id_resource": "inv-001",
-      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura"
+      "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+      "content_resource": "Esta es una investigacion completa sobre la preservacion de la salud auditiva, centrada en conductas preventivas y estilos de vida saludables.\n\n---\n\n# Investigacion: Estrategias Integrales para la Preservacion de la Salud Auditiva\n\n## 1. Resumen Ejecutivo\nLa perdida auditiva es una de las condiciones cronicas mas prevalentes a nivel mundial, afectando la comunicacion, la salud cognitiva y el bienestar emocional. Esta investigacion demuestra que la audicion no depende unicamente de la proteccion contra ruidos fuertes, sino que es el resultado de un enfoque **holistico** que incluye nutricion celular, salud cardiovascular, higiene sonora y monitoreo medico proactivo."
     },
     "respuesta_exitosa": {
-      "id_resource": "inv-001",
-      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+      "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+      "content_resource": "Esta es una investigacion completa sobre la preservacion de la salud auditiva, centrada en conductas preventivas y estilos de vida saludables.\n\n---\n\n# Investigacion: Estrategias Integrales para la Preservacion de la Salud Auditiva\n\n## 1. Resumen Ejecutivo\nLa perdida auditiva es una de las condiciones cronicas mas prevalentes a nivel mundial, afectando la comunicacion, la salud cognitiva y el bienestar emocional. Esta investigacion demuestra que la audicion no depende unicamente de la proteccion contra ruidos fuertes, sino que es el resultado de un enfoque **holistico** que incluye nutricion celular, salud cardiovascular, higiene sonora y monitoreo medico proactivo.",
       "createdAt": "2026-04-28T10:00:00.000Z",
       "updatedAt": "2026-04-28T10:00:00.000Z"
     }
@@ -21,29 +21,57 @@
     "metodo": "GET",
     "respuesta_exitosa": [
       {
-        "id_resource": "inv-001",
-        "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+        "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+        "content_resource": "Esta es una investigacion completa sobre la preservacion de la salud auditiva, centrada en conductas preventivas y estilos de vida saludables.",
         "createdAt": "2026-04-28T10:00:00.000Z",
         "updatedAt": "2026-04-28T10:00:00.000Z"
       }
     ]
   },
   "ejemplo_get_investigacion_by_id": {
-    "url": "http://localhost:3000/api/v1/investigaciones/inv-001",
+    "url": "http://localhost:3000/api/v1/investigaciones/63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
     "metodo": "GET",
     "respuesta_exitosa": {
-      "id_resource": "inv-001",
-      "content_resource": "Investigación sobre los efectos de la exposición prolongada a ruido industrial en trabajadores de manufactura",
+      "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+      "content_resource": "Esta es una investigacion completa sobre la preservacion de la salud auditiva, centrada en conductas preventivas y estilos de vida saludables.",
       "createdAt": "2026-04-28T10:00:00.000Z",
       "updatedAt": "2026-04-28T10:00:00.000Z"
     }
   },
+  "ejemplo_put_investigacion": {
+    "url": "http://localhost:3000/api/v1/investigaciones/63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+    "metodo": "PUT",
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "content_resource": "Investigacion actualizada: nuevas estrategias para la preservacion de la salud auditiva."
+    },
+    "respuesta_exitosa": {
+      "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+      "content_resource": "Investigacion actualizada: nuevas estrategias para la preservacion de la salud auditiva.",
+      "createdAt": "2026-04-28T10:00:00.000Z",
+      "updatedAt": "2026-04-28T12:00:00.000Z"
+    }
+  },
+  "ejemplo_delete_investigacion": {
+    "url": "http://localhost:3000/api/v1/investigaciones/63c94a7c-6be2-4fb6-a3cf-1a50e468fa07",
+    "metodo": "DELETE",
+    "respuesta_exitosa": {
+      "status": 204,
+      "body": "Sin contenido"
+    }
+  },
   "errores_validacion": {
     "id_resource_vacio": {
-      "error": "id_resource es requerido y no puede estar vacío"
+      "body": { "id_resource": "", "content_resource": "contenido" },
+      "error_esperado": { "error": "id_resource es requerido y no puede estar vacio" }
     },
-    "content_resource_vacio": {
-      "error": "content_resource es requerido y no puede estar vacío"
+    "content_resource_vacio_create": {
+      "body": { "id_resource": "63c94a7c-6be2-4fb6-a3cf-1a50e468fa07", "content_resource": "" },
+      "error_esperado": { "error": "content_resource es requerido y no puede estar vacio" }
+    },
+    "content_resource_vacio_update": {
+      "body": { "content_resource": "" },
+      "error_esperado": { "error": "content_resource no puede estar vacio" }
     }
   }
 }

@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import { 
   CreateInvestigacionUseCase, 
   GetAllInvestigacionesUseCase, 
-  GetInvestigacionByIdUseCase
+  GetInvestigacionByIdUseCase,
+  UpdateInvestigacionUseCase,
+  DeleteInvestigacionUseCase
 } from '../../domain/usecases';
 import { InvestigacionRepository } from '../../infrastructure/database';
-import { CreateInvestigacionDTO } from '../dto';
+import { CreateInvestigacionDTO, UpdateInvestigacionDTO } from '../dto';
 import { ZodError } from 'zod';
 import { Logger } from '../../infrastructure/logger/Logger';
 
@@ -58,6 +60,45 @@ export class InvestigacionController {
         return;
       }
       Logger.danger('Error en InvestigacionController.findById', { error: errorMessage });
+      res.status(500).json({ error: errorMessage });
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = UpdateInvestigacionDTO.parse(req.body);
+      const useCase = new UpdateInvestigacionUseCase(repository);
+      const result = await useCase.execute(id, data);
+      res.json(result);
+    } catch (error) {
+      if (error instanceof ZodError) {
+        res.status(400).json({ error: error.errors });
+        return;
+      }
+      const errorMessage = (error as Error).message;
+      if (errorMessage.includes('ID es requerido') || errorMessage.includes('no es válido') || errorMessage.includes('no encontrada')) {
+        res.status(400).json({ error: errorMessage });
+        return;
+      }
+      Logger.danger('Error en InvestigacionController.update', { error: errorMessage });
+      res.status(500).json({ error: errorMessage });
+    }
+  }
+
+  static async delete(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const useCase = new DeleteInvestigacionUseCase(repository);
+      await useCase.execute(id);
+      res.status(204).send();
+    } catch (error) {
+      const errorMessage = (error as Error).message;
+      if (errorMessage.includes('ID es requerido') || errorMessage.includes('no es válido') || errorMessage.includes('no encontrada')) {
+        res.status(400).json({ error: errorMessage });
+        return;
+      }
+      Logger.danger('Error en InvestigacionController.delete', { error: errorMessage });
       res.status(500).json({ error: errorMessage });
     }
   }

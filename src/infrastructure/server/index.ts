@@ -53,6 +53,7 @@ app.use('/api/v1/tinnitus-responses', tinnitusResponseRoutes);
 app.use('/api/v1/tinnitus-notes', tinnitusNoteRoutes);
 app.use('/api/v1/tinnitus-analysis', tinnitusAnalysisRoutes);
 app.use('/api/v1/tinnitus-notes-analysis', tinnitusNotesAnalysisRoutes);
+app.use('/api/v1/investigaciones', investigacionRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
