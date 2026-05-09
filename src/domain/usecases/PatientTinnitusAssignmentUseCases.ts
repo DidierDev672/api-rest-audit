@@ -4,6 +4,7 @@ import { IPatientRepository } from '../repositories';
 import { ITinnitusQuestionnaireRepository } from '../repositories';
 import { IPatientTinnitusAssignmentRepository } from '../repositories';
 import { PatientTinnitusAssignment, TinnitusAssignmentValidationResult } from '../entities';
+import { TinnitusAssignmentStatus } from '../enums/TinnitusAssignmentStatus';
 
 export interface AssignTinnitusData {
   idPatient: string;
@@ -127,6 +128,7 @@ export class CreateTinnitusAssignmentUseCase {
       const result = await this.assignmentRepository.create({
         idPatient: data.idPatient,
         idTinnitusQuestionnaires: data.idTinnitusQuestionnaires,
+        status: TinnitusAssignmentStatus.ACTIVE,
       });
 
       Logger.success('Asignación creada exitosamente', { id: result.id });
@@ -227,6 +229,42 @@ export class DeletePatientTinnitusAssignmentsUseCase {
       Logger.success('Asignaciones del paciente eliminadas', { idPatient });
     } catch (error) {
       Logger.danger('Error al eliminar asignaciones del paciente', {
+        error: (error as Error).message,
+      });
+      throw error;
+    }
+  }
+}
+
+export class UpdateTinnitusAssignmentUseCase {
+  constructor(
+    private readonly assignmentRepository: IPatientTinnitusAssignmentRepository,
+    private readonly patientRepository: IPatientRepository,
+    private readonly tinnitusRepository: ITinnitusQuestionnaireRepository
+  ) {}
+
+  async execute(id: string, newStatus: TinnitusAssignmentStatus): Promise<PatientTinnitusAssignment> {
+    try {
+      IdValidator.validate(id, 'TinnitusAssignment');
+
+      Logger.info('Actualizando estado de asignación de tinnitus', { id, newStatus });
+
+      const assignment = await this.assignmentRepository.findById(id);
+      if (!assignment) {
+        throw new Error('La asignación de tinnitus no existe');
+      }
+
+      const currentStatus = assignment.status as TinnitusAssignmentStatus;
+      if (currentStatus === TinnitusAssignmentStatus.INACTIVE || currentStatus === TinnitusAssignmentStatus.DISCONTINUED) {
+        throw new Error(`No se puede actualizar: la asignación ya se encuentra ${currentStatus}`);
+      }
+
+      const result = await this.assignmentRepository.update(id, { status: newStatus });
+
+      Logger.success('Estado de asignación actualizado exitosamente', { id, status: newStatus });
+      return result;
+    } catch (error) {
+      Logger.danger('Error al actualizar estado de asignación', {
         error: (error as Error).message,
       });
       throw error;

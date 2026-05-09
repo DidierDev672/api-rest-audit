@@ -57,6 +57,15 @@ El método **DELETE** se utiliza para **eliminar un recurso existente** del serv
 - **Respuesta exitosa:** `200 OK` / `204 No Content` confirmando la eliminación.
 - **Ejemplos:** Eliminar un paciente, borrar una asignación, remover un sonido relajante.
 
+### PATCH
+
+El método **PATCH** se utiliza para **actualizar parcialmente un recurso existente**. A diferencia de PUT, solo envía los campos que se desean modificar.
+
+- **Propósito:** Actualizar parcialmente un recurso (ej. cambiar solo el estado).
+- **Cuerpo:** Debe incluir un JSON con únicamente los campos a modificar.
+- **Respuesta exitosa:** `200 OK` con el recurso actualizado.
+- **Ejemplos:** Cambiar el estado de una asignación de tinnitus.
+
 ---
 
 ## 2. Resumen de Endpoints
@@ -66,8 +75,9 @@ El método **DELETE** se utiliza para **eliminar un recurso existente** del serv
 | **GET** | 60 |
 | **POST** | 25 |
 | **PUT** | 18 |
+| **PATCH** | 1 |
 | **DELETE** | 19 |
-| **Total** | **122** |
+| **Total** | **123** |
 
 ---
 
@@ -377,6 +387,65 @@ curl -X DELETE http://localhost:3000/api/v1/tinnitus-analysis/550e8400-e29b-41d4
 
 ---
 
+### 3.5 PATCH — Actualizar parcialmente recursos
+
+**Actualizar el estado de una asignación de tinnitus:**
+
+```bash
+curl -X PATCH http://localhost:3000/api/v1/tinnitus-assignments/550e8400-e29b-41d4-a716-446655440005 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "inactive"
+  }'
+```
+
+Respuesta esperada (`200 OK`):
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440005",
+  "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+  "idTinnitusQuestionnaires": "550e8400-e29b-41d4-a716-446655440010",
+  "status": "inactive",
+  "createdAt": "2025-01-15T10:30:00.000Z",
+  "updatedAt": "2025-01-15T12:00:00.000Z"
+}
+```
+
+**Valores válidos para `status`:**
+
+| Valor | Descripción |
+|-------|-------------|
+| `active` | Asignación activa |
+| `inactive` | Asignación inactiva |
+| `discontinued` | Asignación descontinuada |
+
+> **Nota:** Si la asignación ya se encuentra en estado `inactive` o `discontinued`, el endpoint retornará un error `400 Bad Request` indicando que no se puede actualizar porque la asignación ya se encuentra en ese estado terminal.
+
+```bash
+# Ejemplo con estado descontinuado
+curl -X PATCH http://localhost:3000/api/v1/tinnitus-assignments/550e8400-e29b-41d4-a716-446655440005 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "status": "discontinued"
+  }'
+```
+
+Respuesta esperada (`200 OK`):
+
+```json
+{
+  "id": "550e8400-e29b-41d4-a716-446655440005",
+  "idPatient": "550e8400-e29b-41d4-a716-446655440000",
+  "idTinnitusQuestionnaires": "550e8400-e29b-41d4-a716-446655440010",
+  "status": "discontinued",
+  "createdAt": "2025-01-15T10:30:00.000Z",
+  "updatedAt": "2025-01-15T12:05:00.000Z"
+}
+```
+
+---
+
 ## 4. Listado Completo de Endpoints
 
 ### 4.1 Health Check
@@ -484,6 +553,7 @@ curl -X DELETE http://localhost:3000/api/v1/tinnitus-analysis/550e8400-e29b-41d4
 | POST | `/` | Asignar un paciente a tinnitus |
 | GET | `/patient/:idPatient` | Obtener asignaciones por paciente |
 | GET | `/:id` | Obtener una asignación por ID |
+| PATCH | `/:id` | Actualizar el estado de una asignación (`active`, `inactive`, `discontinued`) |
 | DELETE | `/:id` | Eliminar una asignación por ID |
 | DELETE | `/patient/:idPatient` | Eliminar asignaciones por paciente |
 | POST | `/validate` | Validar una asignación de tinnitus |

@@ -11,5 +11,6 @@ router.delete('/patient/:idPatient', PatientTinnitusAssignmentController.deleteB
 router.post('/validate', PatientTinnitusAssignmentController.validate);
 router.get('/check/patient/:idPatient', PatientTinnitusAssignmentController.checkPatientExists);
 router.get('/check/tinnitus/:idTinnitus', PatientTinnitusAssignmentController.checkTinnitusExists);
+router.patch('/:id', PatientTinnitusAssignmentController.updateStatus);
 
 export default router;

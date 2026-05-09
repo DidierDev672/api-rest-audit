@@ -8,6 +8,7 @@ import {
   ValidateTinnitusAssignmentUseCase,
   CheckPatientTinnitusExistsUseCase,
   CheckTinnitusExistsUseCase,
+  UpdateTinnitusAssignmentUseCase,
 } from '../../domain/usecases';
 import {
   PatientRepository,
@@ -19,6 +20,7 @@ import {
   ValidateTinnitusAssignmentSchema,
   CheckPatientTinnitusExistsSchema,
   CheckTinnitusExistsSchema,
+  UpdateTinnitusAssignmentSchema,
 } from '../dto';
 import { ZodError } from 'zod';
 import { Logger } from '../../infrastructure/logger/Logger';
@@ -253,6 +255,41 @@ export class PatientTinnitusAssignmentController {
         return;
       }
       Logger.danger('Error en PatientTinnitusAssignmentController.checkTinnitusExists', {
+        error: errorMessage,
+      });
+      res.status(500).json({ error: errorMessage });
+    }
+  }
+
+  static async updateStatus(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      Logger.info('Actualizando estado de asignación', { id, body: req.body });
+      const data = UpdateTinnitusAssignmentSchema.parse(req.body);
+      const useCase = new UpdateTinnitusAssignmentUseCase(
+        assignmentRepository,
+        patientRepository,
+        tinnitusRepository,
+      );
+      const result = await useCase.execute(id, data.status);
+      Logger.success('Estado de asignación actualizado', { id, status: data.status });
+      res.json(result);
+    } catch (error) {
+      const errorMessage = (error as Error).message;
+      if (error instanceof ZodError) {
+        res.status(400).json({ error: error.errors });
+        return;
+      }
+      if (
+        errorMessage.includes('no existe') ||
+        errorMessage.includes('ID es requerido') ||
+        errorMessage.includes('no es válido') ||
+        errorMessage.includes('No se puede actualizar')
+      ) {
+        res.status(400).json({ error: errorMessage });
+        return;
+      }
+      Logger.danger('Error en PatientTinnitusAssignmentController.updateStatus', {
         error: errorMessage,
       });
       res.status(500).json({ error: errorMessage });

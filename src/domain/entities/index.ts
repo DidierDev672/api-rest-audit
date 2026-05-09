@@ -131,6 +131,7 @@ export interface PatientScreeningAssignment extends Entity {
 export interface PatientTinnitusAssignment extends Entity {
   idPatient: string;
   idTinnitusQuestionnaires: string;
+  status: string;
 }
 
 export interface OptionAnswerResponse {
