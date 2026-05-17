@@ -248,6 +248,16 @@ export interface ResearchAnalysis {
   updatedAt?: Date;
 }
 
+export interface ResearchNoteAnalysis extends Entity {
+  researchId: string;
+  analysisText: string;
+  notesCount: number;
+  source: string;
+  modelName?: string;
+  language: string;
+  createdByUserId: string;
+}
+
 export * from './PatientLoginEntity'
 
 export interface TinnitusAnalysis extends Entity {
@@ -267,3 +277,26 @@ export interface TinnitusNotesAnalysis extends Entity {
   analyzedAt?: Date;
   createdBy?: string;
 };
+
+export interface CalendarEvent extends Entity {
+  type: 'task' | 'research';
+  title: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  researchId: string | null;
+}
+
+export interface CalendarAiAnalysis extends Entity {
+  calendarEventId: string;
+  researchId: string | null;
+  eventTitle: string;
+  eventType: 'task' | 'research';
+  eventDate: string;
+  researchName: string | null;
+  content: string;
+  model: string | null;
+  generatedAt: Date;
+}

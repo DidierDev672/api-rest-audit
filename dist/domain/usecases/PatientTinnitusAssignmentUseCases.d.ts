@@ -2,6 +2,7 @@ import { IPatientRepository } from '../repositories';
 import { ITinnitusQuestionnaireRepository } from '../repositories';
 import { IPatientTinnitusAssignmentRepository } from '../repositories';
 import { PatientTinnitusAssignment, TinnitusAssignmentValidationResult } from '../entities';
+import { TinnitusAssignmentStatus } from '../enums/TinnitusAssignmentStatus';
 export interface AssignTinnitusData {
     idPatient: string;
     idTinnitusQuestionnaires: string;
@@ -48,5 +49,12 @@ export declare class DeletePatientTinnitusAssignmentsUseCase {
     private readonly repository;
     constructor(repository: IPatientTinnitusAssignmentRepository);
     execute(idPatient: string): Promise<void>;
+}
+export declare class UpdateTinnitusAssignmentUseCase {
+    private readonly assignmentRepository;
+    private readonly patientRepository;
+    private readonly tinnitusRepository;
+    constructor(assignmentRepository: IPatientTinnitusAssignmentRepository, patientRepository: IPatientRepository, tinnitusRepository: ITinnitusQuestionnaireRepository);
+    execute(id: string, newStatus: TinnitusAssignmentStatus): Promise<PatientTinnitusAssignment>;
 }
 //# sourceMappingURL=PatientTinnitusAssignmentUseCases.d.ts.map

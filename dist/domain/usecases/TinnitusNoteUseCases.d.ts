@@ -5,6 +5,8 @@ export interface CreateTinnitusNoteData {
     idTinnitusQuestionnaires: string;
     idTinnitusResponse: string;
     description: string;
+    color?: string;
+    source?: string;
 }
 export declare class CreateTinnitusNoteUseCase {
     private readonly repository;

@@ -25,9 +25,12 @@ export const CheckTinnitusExistsSchema = z.object({
 });
 
 export const UpdateTinnitusAssignmentSchema = z.object({
-  status: z.nativeEnum(TinnitusAssignmentStatus, {
-    errorMap: () => ({ message: 'El estado debe ser: active, inactive o discontinued' }),
-  }),
+  status: z.preprocess(
+    (val) => (typeof val === 'string' ? val.toLowerCase() : val),
+    z.nativeEnum(TinnitusAssignmentStatus, {
+      errorMap: () => ({ message: 'El estado debe ser: active, inactive o discontinued' }),
+    })
+  ),
 });
 
 export type AssignTinnitusDTO = z.infer<typeof AssignTinnitusSchema>;

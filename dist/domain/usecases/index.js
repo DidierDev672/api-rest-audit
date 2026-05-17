@@ -31,4 +31,6 @@ __exportStar(require("./DoctorUseCases"), exports);
 __exportStar(require("./DoctorProfessionalDataUseCases"), exports);
 __exportStar(require("./InvestigacionUseCases"), exports);
 __exportStar(require("./TinnitusAnalysisUseCases"), exports);
+__exportStar(require("./TinnitusNotesAnalysisUseCases"), exports);
+__exportStar(require("./CalendarEventUseCases"), exports);
 //# sourceMappingURL=index.js.map

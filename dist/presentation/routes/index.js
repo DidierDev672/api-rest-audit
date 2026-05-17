@@ -31,5 +31,8 @@ __exportStar(require("./doctorRoutes"), exports);
 __exportStar(require("./doctorProfessionalDataRoutes"), exports);
 __exportStar(require("./investigacionRoutes"), exports);
 __exportStar(require("./researchAnalysisRoutes"), exports);
+__exportStar(require("./researchNoteAnalysisRoutes"), exports);
 __exportStar(require("./tinnitusAnalysisRoutes"), exports);
+__exportStar(require("./tinnitusNotesAnalysisRoutes"), exports);
+__exportStar(require("./calendarEventRoutes"), exports);
 //# sourceMappingURL=index.js.map

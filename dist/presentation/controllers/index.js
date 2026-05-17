@@ -32,5 +32,8 @@ __exportStar(require("./DoctorController"), exports);
 __exportStar(require("./DoctorProfessionalDataController"), exports);
 __exportStar(require("./InvestigacionController"), exports);
 __exportStar(require("./ResearchAnalysisController"), exports);
+__exportStar(require("./ResearchNoteAnalysisController"), exports);
 __exportStar(require("./TinnitusAnalysisController"), exports);
+__exportStar(require("./TinnitusNotesAnalysisController"), exports);
+__exportStar(require("./CalendarEventController"), exports);
 //# sourceMappingURL=index.js.map

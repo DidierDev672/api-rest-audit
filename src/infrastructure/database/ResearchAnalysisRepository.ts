@@ -29,6 +29,22 @@ export class ResearchAnalysisRepository implements IResearchAnalysisRepository {
     return this.mapToEntity(result);
   }
 
+  async findAll(): Promise<ResearchAnalysis[]> {
+    Logger.info('Finding all research analyses');
+
+    const { data, error } = await supabase
+      .from(this.table)
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      Logger.danger('Error finding all research analyses', { error: error.message });
+      throw new Error(error.message);
+    }
+
+    return data.map(this.mapToEntity);
+  }
+
   async findById(id: string): Promise<ResearchAnalysis | null> {
     Logger.info('Finding research analysis by ID', { id });
 
@@ -123,6 +139,7 @@ export class ResearchAnalysisRepository implements IResearchAnalysisRepository {
 
   private mapToEntity(data: any): ResearchAnalysis {
     return {
+      id: data.id,
       researchId: data.research_id,
       analysis: data.analysis,
       notesCount: data.notes_count,

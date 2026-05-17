@@ -3,6 +3,7 @@ import { ResearchAnalysisRepository as IResearchAnalysisRepository } from '../..
 export declare class ResearchAnalysisRepository implements IResearchAnalysisRepository {
     private readonly table;
     create(data: Omit<ResearchAnalysis, 'id' | 'createdAt' | 'updatedAt'>): Promise<ResearchAnalysis>;
+    findAll(): Promise<ResearchAnalysis[]>;
     findById(id: string): Promise<ResearchAnalysis | null>;
     findByResearchId(researchId: string): Promise<ResearchAnalysis[]>;
     update(id: string, data: Partial<ResearchAnalysis>): Promise<ResearchAnalysis>;

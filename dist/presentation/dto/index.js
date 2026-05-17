@@ -31,5 +31,8 @@ __exportStar(require("./DoctorDTO"), exports);
 __exportStar(require("./DoctorProfessionalDataDTO"), exports);
 __exportStar(require("./InvestigacionDTO"), exports);
 __exportStar(require("./ResearchAnalysisDTO"), exports);
+__exportStar(require("./ResearchNoteAnalysisDTO"), exports);
 __exportStar(require("./TinnitusAnalysisDTO"), exports);
+__exportStar(require("./TinnitusNotesAnalysisDTO"), exports);
+__exportStar(require("./CalendarEventDTO"), exports);
 //# sourceMappingURL=index.js.map

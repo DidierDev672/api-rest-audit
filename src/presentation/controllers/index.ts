@@ -16,5 +16,8 @@ export * from './DoctorController';
 export * from './DoctorProfessionalDataController';
 export * from './InvestigacionController';
 export * from './ResearchAnalysisController';
+export * from './ResearchNoteAnalysisController';
 export * from './TinnitusAnalysisController';
 export * from './TinnitusNotesAnalysisController';
+export * from './CalendarEventController';
+export * from './CalendarAiAnalysisController';

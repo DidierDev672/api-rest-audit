@@ -41,6 +41,39 @@ class InvestigacionRepository {
             return null;
         return this.mapToEntity(data);
     }
+    async findAllById(id) {
+        const { data, error } = await supabase_1.supabase
+            .from(this.table)
+            .select('*')
+            .eq('id_resource', id)
+            .order('created_at', { ascending: false });
+        if (error || !data)
+            return null;
+        return data.map(this.mapToEntity);
+    }
+    async update(id_resource, data) {
+        const now = new Date();
+        const updateData = { updated_at: now };
+        if (data.content_resource !== undefined)
+            updateData.content_resource = data.content_resource;
+        const { data: result, error } = await supabase_1.supabase
+            .from(this.table)
+            .update(updateData)
+            .eq('id_resource', id_resource)
+            .select()
+            .single();
+        if (error)
+            throw new Error(error.message);
+        return this.mapToEntity(result);
+    }
+    async delete(id_resource) {
+        const { error } = await supabase_1.supabase
+            .from(this.table)
+            .delete()
+            .eq('id_resource', id_resource);
+        if (error)
+            throw new Error(error.message);
+    }
     mapToEntity(data) {
         return {
             id_resource: data.id_resource,

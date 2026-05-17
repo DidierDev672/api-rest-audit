@@ -114,6 +114,7 @@ export interface PatientScreeningAssignment extends Entity {
 export interface PatientTinnitusAssignment extends Entity {
     idPatient: string;
     idTinnitusQuestionnaires: string;
+    status: string;
 }
 export interface OptionAnswerResponse {
     id?: string;
@@ -136,6 +137,8 @@ export interface TinnitusNote extends Entity {
     idTinnitusQuestionnaires: string;
     idTinnitusResponse: string;
     description: string;
+    color?: string;
+    source?: string;
 }
 export interface TinnitusAssignmentValidationResult {
     patientExists: boolean;
@@ -214,6 +217,15 @@ export interface ResearchAnalysis {
     createdAt?: Date;
     updatedAt?: Date;
 }
+export interface ResearchNoteAnalysis extends Entity {
+    researchId: string;
+    analysisText: string;
+    notesCount: number;
+    source: string;
+    modelName?: string;
+    language: string;
+    createdByUserId: string;
+}
 export * from './PatientLoginEntity';
 export interface TinnitusAnalysis extends Entity {
     idPatient: string;
@@ -221,5 +233,24 @@ export interface TinnitusAnalysis extends Entity {
     idTinnitusResponse: string;
     analysis: string;
     model: string;
+}
+export interface TinnitusNotesAnalysis extends Entity {
+    idPatient: string;
+    idTinnitusQuestionnaires?: string;
+    idTinnitusResponse?: string;
+    analysis: string;
+    noteCount?: number;
+    analyzedAt?: Date;
+    createdBy?: string;
+}
+export interface CalendarEvent extends Entity {
+    type: 'task' | 'research';
+    title: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+    startTime: string;
+    endTime: string;
+    researchId: string | null;
 }
 //# sourceMappingURL=index.d.ts.map

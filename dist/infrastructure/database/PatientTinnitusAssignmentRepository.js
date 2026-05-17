@@ -16,6 +16,7 @@ class PatientTinnitusAssignmentRepository {
             id,
             id_patient: data.idPatient,
             id_tinnitus_questionnaires: data.idTinnitusQuestionnaires,
+            status: data.status ?? 'active',
             created_at: now,
             updated_at: now,
         })
@@ -79,11 +80,31 @@ class PatientTinnitusAssignmentRepository {
         if (error)
             throw new Error(error.message);
     }
+    async update(id, data) {
+        const now = new Date();
+        const updateData = { updated_at: now };
+        if (data.status !== undefined)
+            updateData.status = data.status;
+        if (data.idPatient !== undefined)
+            updateData.id_patient = data.idPatient;
+        if (data.idTinnitusQuestionnaires !== undefined)
+            updateData.id_tinnitus_questionnaires = data.idTinnitusQuestionnaires;
+        const { data: result, error } = await supabase_1.supabase
+            .from(this.table)
+            .update(updateData)
+            .eq('id', id)
+            .select()
+            .single();
+        if (error)
+            throw new Error(error.message);
+        return this.mapToEntity(result);
+    }
     mapToEntity(data) {
         return {
             id: data.id,
             idPatient: data.id_patient,
             idTinnitusQuestionnaires: data.id_tinnitus_questionnaires,
+            status: data.status ?? 'active',
             createdAt: new Date(data.created_at),
             updatedAt: new Date(data.updated_at),
         };

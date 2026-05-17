@@ -41,6 +41,29 @@ export class InvestigacionController {
     }
   }
 
+  static async listByIdResource(req: Request, res: Response) {
+    try {
+      const { id_resource } = req.params;
+      const useCase = new GetInvestigacionByIdUseCase(repository);
+      const result = await useCase.execute(id_resource);
+
+      if (!result) {
+        res.status(404).json({ error: 'Investigación no encontrada' });
+        return;
+      }
+
+      res.json([result]);
+    } catch (error) {
+      const errorMessage = (error as Error).message;
+      if (errorMessage.includes('ID es requerido') || errorMessage.includes('no es válido')) {
+        res.status(400).json({ error: errorMessage });
+        return;
+      }
+      Logger.danger('Error en InvestigacionController.listByIdResource', { error: errorMessage });
+      res.status(500).json({ error: errorMessage });
+    }
+  }
+
   static async findById(req: Request, res: Response) {
     try {
       const { id } = req.params;

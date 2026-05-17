@@ -6,15 +6,13 @@ const supabase_1 = require("../database/supabase");
 const Logger_1 = require("../logger/Logger");
 class TinnitusNoteRepository {
     constructor() {
-        this.table = 'notes_tinnitus_responses';
+        this.table = 'tinnitus_notes';
     }
     async create(data) {
         const id = (0, uuid_1.v4)();
         const now = new Date();
         Logger_1.Logger.info('Creando nota de tinnitus', { patientId: data.idPatient, questionnaireId: data.idTinnitusQuestionnaires });
-        const { data: result, error } = await supabase_1.supabase
-            .from(this.table)
-            .insert({
+        const insertData = {
             id,
             id_patient: data.idPatient,
             id_tinnitus_questionnaires: data.idTinnitusQuestionnaires,
@@ -22,7 +20,14 @@ class TinnitusNoteRepository {
             description: data.description,
             created_at: now,
             updated_at: now,
-        })
+        };
+        if (data.color !== undefined)
+            insertData.color = data.color;
+        if (data.source !== undefined)
+            insertData.source = data.source;
+        const { data: result, error } = await supabase_1.supabase
+            .from(this.table)
+            .insert(insertData)
             .select()
             .single();
         if (error) {
@@ -113,6 +118,10 @@ class TinnitusNoteRepository {
             updateData.id_tinnitus_response = data.idTinnitusResponse;
         if (data.description !== undefined)
             updateData.description = data.description;
+        if (data.color !== undefined && data.color !== null)
+            updateData.color = data.color;
+        if (data.source !== undefined && data.source !== null)
+            updateData.source = data.source;
         const { data: result, error } = await supabase_1.supabase
             .from(this.table)
             .update(updateData)
@@ -145,6 +154,8 @@ class TinnitusNoteRepository {
             idTinnitusQuestionnaires: data.id_tinnitus_questionnaires,
             idTinnitusResponse: data.id_tinnitus_response,
             description: data.description,
+            color: data.color || undefined,
+            source: data.source || undefined,
             createdAt: new Date(data.created_at),
             updatedAt: new Date(data.updated_at),
         };

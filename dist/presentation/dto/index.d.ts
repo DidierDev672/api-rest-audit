@@ -15,5 +15,8 @@ export * from './DoctorDTO';
 export * from './DoctorProfessionalDataDTO';
 export * from './InvestigacionDTO';
 export * from './ResearchAnalysisDTO';
+export * from './ResearchNoteAnalysisDTO';
 export * from './TinnitusAnalysisDTO';
+export * from './TinnitusNotesAnalysisDTO';
+export * from './CalendarEventDTO';
 //# sourceMappingURL=index.d.ts.map

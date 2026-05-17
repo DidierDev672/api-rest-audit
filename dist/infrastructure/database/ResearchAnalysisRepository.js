@@ -26,6 +26,18 @@ class ResearchAnalysisRepository {
         Logger_1.Logger.success('Research analysis created');
         return this.mapToEntity(result);
     }
+    async findAll() {
+        Logger_1.Logger.info('Finding all research analyses');
+        const { data, error } = await supabase_1.supabase
+            .from(this.table)
+            .select('*')
+            .order('created_at', { ascending: false });
+        if (error) {
+            Logger_1.Logger.danger('Error finding all research analyses', { error: error.message });
+            throw new Error(error.message);
+        }
+        return data.map(this.mapToEntity);
+    }
     async findById(id) {
         Logger_1.Logger.info('Finding research analysis by ID', { id });
         const { data, error } = await supabase_1.supabase
@@ -104,6 +116,7 @@ class ResearchAnalysisRepository {
     }
     mapToEntity(data) {
         return {
+            id: data.id,
             researchId: data.research_id,
             analysis: data.analysis,
             notesCount: data.notes_count,

@@ -23,6 +23,8 @@ class CreateTinnitusNoteUseCase {
                 idTinnitusQuestionnaires: data.idTinnitusQuestionnaires,
                 idTinnitusResponse: data.idTinnitusResponse,
                 description: data.description,
+                color: data.color,
+                source: data.source,
             });
             Logger_1.Logger.success('Nota de tinnitus creada exitosamente', { id: result.id });
             return result;

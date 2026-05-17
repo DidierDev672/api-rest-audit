@@ -20,6 +20,11 @@ import investigacionRoutes from '../../presentation/routes/investigacionRoutes';
 import researchAnalysisRoutes from '../../presentation/routes/researchAnalysisRoutes';
 import tinnitusAnalysisRoutes from '../../presentation/routes/tinnitusAnalysisRoutes';
 import tinnitusNotesAnalysisRoutes from '../../presentation/routes/tinnitusNotesAnalysisRoutes';
+import researchNoteAnalysisRoutes from '../../presentation/routes/researchNoteAnalysisRoutes';
+import calendarEventRoutes from '../../presentation/routes/calendarEventRoutes';
+import calendarAiAnalysisRoutes from '../../presentation/routes/calendarAiAnalysisRoutes';
+import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
+import { authMiddleware } from '../middleware/authMiddleware';
 import { Logger } from '../logger/Logger';
 import { errorHandler, notFoundHandler, requestLogger } from '../middleware/errorHandler';
 
@@ -54,6 +59,11 @@ app.use('/api/v1/tinnitus-notes', tinnitusNoteRoutes);
 app.use('/api/v1/tinnitus-analysis', tinnitusAnalysisRoutes);
 app.use('/api/v1/tinnitus-notes-analysis', tinnitusNotesAnalysisRoutes);
 app.use('/api/v1/investigaciones', investigacionRoutes);
+app.use('/api/v1/research-notes/analysis', researchNoteAnalysisRoutes);
+app.get('/api/v1/research/:researchId/analysis', authMiddleware, ResearchNoteAnalysisController.findByResearchId);
+app.use('/api/v1/research-analysis', researchAnalysisRoutes);
+app.use('/api/v1/calendar-events', calendarEventRoutes);
+app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DeletePatientTinnitusAssignmentsUseCase = exports.DeleteTinnitusAssignmentUseCase = exports.GetTinnitusAssignmentByIdUseCase = exports.GetTinnitusAssignmentsByPatientUseCase = exports.CreateTinnitusAssignmentUseCase = exports.CheckTinnitusExistsUseCase = exports.CheckPatientTinnitusExistsUseCase = exports.ValidateTinnitusAssignmentUseCase = void 0;
+exports.UpdateTinnitusAssignmentUseCase = exports.DeletePatientTinnitusAssignmentsUseCase = exports.DeleteTinnitusAssignmentUseCase = exports.GetTinnitusAssignmentByIdUseCase = exports.GetTinnitusAssignmentsByPatientUseCase = exports.CreateTinnitusAssignmentUseCase = exports.CheckTinnitusExistsUseCase = exports.CheckPatientTinnitusExistsUseCase = exports.ValidateTinnitusAssignmentUseCase = void 0;
 const Logger_1 = require("../../infrastructure/logger/Logger");
 const IdValidator_1 = require("../../infrastructure/validators/IdValidator");
+const TinnitusAssignmentStatus_1 = require("../enums/TinnitusAssignmentStatus");
 class ValidateTinnitusAssignmentUseCase {
     constructor(patientRepository, tinnitusRepository) {
         this.patientRepository = patientRepository;
@@ -109,6 +110,7 @@ class CreateTinnitusAssignmentUseCase {
             const result = await this.assignmentRepository.create({
                 idPatient: data.idPatient,
                 idTinnitusQuestionnaires: data.idTinnitusQuestionnaires,
+                status: TinnitusAssignmentStatus_1.TinnitusAssignmentStatus.ACTIVE,
             });
             Logger_1.Logger.success('Asignación creada exitosamente', { id: result.id });
             return result;
@@ -212,4 +214,35 @@ class DeletePatientTinnitusAssignmentsUseCase {
     }
 }
 exports.DeletePatientTinnitusAssignmentsUseCase = DeletePatientTinnitusAssignmentsUseCase;
+class UpdateTinnitusAssignmentUseCase {
+    constructor(assignmentRepository, patientRepository, tinnitusRepository) {
+        this.assignmentRepository = assignmentRepository;
+        this.patientRepository = patientRepository;
+        this.tinnitusRepository = tinnitusRepository;
+    }
+    async execute(id, newStatus) {
+        try {
+            IdValidator_1.IdValidator.validate(id, 'TinnitusAssignment');
+            Logger_1.Logger.info('Actualizando estado de asignación de tinnitus', { id, newStatus });
+            const assignment = await this.assignmentRepository.findById(id);
+            if (!assignment) {
+                throw new Error('La asignación de tinnitus no existe');
+            }
+            const currentStatus = assignment.status;
+            if (currentStatus === TinnitusAssignmentStatus_1.TinnitusAssignmentStatus.INACTIVE || currentStatus === TinnitusAssignmentStatus_1.TinnitusAssignmentStatus.DISCONTINUED) {
+                throw new Error(`No se puede actualizar: la asignación ya se encuentra ${currentStatus}`);
+            }
+            const result = await this.assignmentRepository.update(id, { status: newStatus });
+            Logger_1.Logger.success('Estado de asignación actualizado exitosamente', { id, status: newStatus });
+            return result;
+        }
+        catch (error) {
+            Logger_1.Logger.danger('Error al actualizar estado de asignación', {
+                error: error.message,
+            });
+            throw error;
+        }
+    }
+}
+exports.UpdateTinnitusAssignmentUseCase = UpdateTinnitusAssignmentUseCase;
 //# sourceMappingURL=PatientTinnitusAssignmentUseCases.js.map

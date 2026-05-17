@@ -9,6 +9,7 @@ export declare class PatientTinnitusAssignmentRepository implements IPatientTinn
     delete(id: string): Promise<void>;
     deleteByPatientId(idPatient: string): Promise<void>;
     deleteByTinnitusId(idTinnitus: string): Promise<void>;
+    update(id: string, data: Partial<PatientTinnitusAssignment>): Promise<PatientTinnitusAssignment>;
     private mapToEntity;
 }
 //# sourceMappingURL=PatientTinnitusAssignmentRepository.d.ts.map

@@ -31,5 +31,7 @@ __exportStar(require("./IDoctorRepository"), exports);
 __exportStar(require("./IDoctorProfessionalDataRepository"), exports);
 __exportStar(require("./IInvestigacionRepository"), exports);
 __exportStar(require("./IResearchAnalysisRepository"), exports);
+__exportStar(require("./IResearchNoteAnalysisRepository"), exports);
 __exportStar(require("./ITinnitusAnalysisRepository"), exports);
+__exportStar(require("./ICalendarEventRepository"), exports);
 //# sourceMappingURL=index.js.map

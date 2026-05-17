@@ -12,6 +12,16 @@ const Logger_1 = require("../../infrastructure/logger/Logger");
 const repository = new database_1.ResearchAnalysisRepository();
 const auditoryResearchRepository = new AuditoryResearchRepository_1.AuditoryResearchRepository();
 class ResearchAnalysisController {
+    static async findAll(req, res) {
+        try {
+            const analyses = await repository.findAll();
+            res.json(analyses);
+        }
+        catch (error) {
+            Logger_1.Logger.danger('Error in ResearchAnalysisController.findAll', { error: error.message });
+            res.status(500).json({ error: error.message });
+        }
+    }
     static async create(req, res) {
         try {
             const data = dto_1.CreateResearchAnalysisSchema.parse(req.body);

@@ -5,6 +5,7 @@ const router = Router();
 
 router.post('/', InvestigacionController.create);
 router.get('/', InvestigacionController.findAll);
+router.get('/list/:id_resource', InvestigacionController.listByIdResource);
 router.get('/:id', InvestigacionController.findById);
 router.put('/:id', InvestigacionController.update);
 router.delete('/:id', InvestigacionController.delete);

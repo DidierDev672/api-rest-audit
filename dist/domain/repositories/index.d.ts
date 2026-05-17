@@ -15,5 +15,7 @@ export * from './IDoctorRepository';
 export * from './IDoctorProfessionalDataRepository';
 export * from './IInvestigacionRepository';
 export * from './IResearchAnalysisRepository';
+export * from './IResearchNoteAnalysisRepository';
 export * from './ITinnitusAnalysisRepository';
+export * from './ICalendarEventRepository';
 //# sourceMappingURL=index.d.ts.map

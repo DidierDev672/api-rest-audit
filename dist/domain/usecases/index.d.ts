@@ -15,4 +15,6 @@ export * from './DoctorUseCases';
 export * from './DoctorProfessionalDataUseCases';
 export * from './InvestigacionUseCases';
 export * from './TinnitusAnalysisUseCases';
+export * from './TinnitusNotesAnalysisUseCases';
+export * from './CalendarEventUseCases';
 //# sourceMappingURL=index.d.ts.map

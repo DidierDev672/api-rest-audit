@@ -11,5 +11,6 @@ router.delete('/patient/:idPatient', controllers_1.PatientTinnitusAssignmentCont
 router.post('/validate', controllers_1.PatientTinnitusAssignmentController.validate);
 router.get('/check/patient/:idPatient', controllers_1.PatientTinnitusAssignmentController.checkPatientExists);
 router.get('/check/tinnitus/:idTinnitus', controllers_1.PatientTinnitusAssignmentController.checkTinnitusExists);
+router.patch('/:id', controllers_1.PatientTinnitusAssignmentController.updateStatus);
 exports.default = router;
 //# sourceMappingURL=patientTinnitusAssignmentRoutes.js.map

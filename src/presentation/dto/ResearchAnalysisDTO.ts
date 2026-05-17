@@ -7,7 +7,7 @@ export const NoteReferenceSchema = z.object({
 });
 
 export const AnalysisSchema = z.object({
-  summary: z.string().min(1, 'Summary is required'),
+  summary: z.string(),
   generatedAt: z.string().min(1, 'Generated date is required'),
   model: z.string().min(1, 'Model is required'),
 });

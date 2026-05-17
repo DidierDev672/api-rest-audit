@@ -6,7 +6,6 @@ export declare enum LogLevel {
 }
 export declare class Logger {
     private static formatMessage;
-    private static getColor;
     static info(message: string, meta?: any): void;
     static success(message: string, meta?: any): void;
     static warning(message: string, meta?: any): void;

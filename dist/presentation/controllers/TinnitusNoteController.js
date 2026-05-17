@@ -90,13 +90,13 @@ class TinnitusNoteController {
     }
     static async findByPatient(req, res) {
         try {
-            const { patientId } = req.params;
-            Logger_1.Logger.info('TinnitusNoteController.findByPatient - Solicitud recibida', { patientId });
+            const { id_patient } = req.params;
+            Logger_1.Logger.info('TinnitusNoteController.findByPatient - Solicitud recibida', { id_patient });
             const useCase = new usecases_1.GetTinnitusNotesByPatientUseCase(noteRepository);
-            const result = await useCase.execute(patientId);
+            const result = await useCase.execute(id_patient);
             Logger_1.Logger.success('TinnitusNoteController.findByPatient - Notas obtenidas', {
                 count: result.length,
-                patientId,
+                id_patient,
             });
             res.json(result);
         }
@@ -107,6 +107,46 @@ class TinnitusNoteController {
                 throw new errorHandler_1.ValidationAppError(errorMessage, []);
             }
             Logger_1.Logger.danger('TinnitusNoteController.findByPatient - Error', { error: errorMessage });
+            throw error;
+        }
+    }
+    static async createForPatient(req, res) {
+        try {
+            const { id_patient } = req.params;
+            Logger_1.Logger.info('TinnitusNoteController.createForPatient - Solicitud recibida', {
+                id_patient,
+                body: req.body,
+            });
+            const data = dto_1.CreateTinnitusNoteSchema.parse({ ...req.body, id_patient });
+            const useCase = new usecases_1.CreateTinnitusNoteUseCase(noteRepository, patientRepository, questionnaireRepository, responseRepository);
+            const result = await useCase.execute({
+                idPatient: data.id_patient,
+                idTinnitusQuestionnaires: data.id_tinnitus_questionnaires,
+                idTinnitusResponse: data.id_tinnitus_response,
+                description: data.description,
+                color: data.color,
+                source: data.source,
+            });
+            Logger_1.Logger.success('TinnitusNoteController.createForPatient - Nota creada', { id: result.id });
+            res.status(201).json(result);
+        }
+        catch (error) {
+            if (error instanceof zod_1.ZodError) {
+                Logger_1.Logger.warning('TinnitusNoteController.createForPatient - Error de validación Zod', {
+                    errors: error.errors,
+                });
+                throw new errorHandler_1.ValidationAppError('Datos de entrada inválidos', error.errors);
+            }
+            const errorMessage = error.message;
+            if (errorMessage.includes('no encontrado') || errorMessage.includes('no existe')) {
+                Logger_1.Logger.warning('TinnitusNoteController.createForPatient - Entidad no encontrada', {
+                    error: errorMessage,
+                });
+                throw new errorHandler_1.NotFoundAppError(errorMessage);
+            }
+            Logger_1.Logger.danger('TinnitusNoteController.createForPatient - Error interno', {
+                error: errorMessage,
+            });
             throw error;
         }
     }

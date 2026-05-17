@@ -4,6 +4,7 @@ export declare class TinnitusNoteController {
     static findAll(req: Request, res: Response): Promise<void>;
     static findById(req: Request, res: Response): Promise<void>;
     static findByPatient(req: Request, res: Response): Promise<void>;
+    static createForPatient(req: Request, res: Response): Promise<void>;
     static findByQuestionnaire(req: Request, res: Response): Promise<void>;
     static findByResponse(req: Request, res: Response): Promise<void>;
     static update(req: Request, res: Response): Promise<void>;

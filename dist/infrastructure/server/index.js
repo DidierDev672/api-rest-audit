@@ -47,6 +47,11 @@ const tinnitusNoteRoutes_1 = __importDefault(require("../../presentation/routes/
 const investigacionRoutes_1 = __importDefault(require("../../presentation/routes/investigacionRoutes"));
 const researchAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/researchAnalysisRoutes"));
 const tinnitusAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusAnalysisRoutes"));
+const tinnitusNotesAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusNotesAnalysisRoutes"));
+const researchNoteAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/researchNoteAnalysisRoutes"));
+const calendarEventRoutes_1 = __importDefault(require("../../presentation/routes/calendarEventRoutes"));
+const ResearchNoteAnalysisController_1 = require("../../presentation/controllers/ResearchNoteAnalysisController");
+const authMiddleware_1 = require("../middleware/authMiddleware");
 const Logger_1 = require("../logger/Logger");
 const errorHandler_1 = require("../middleware/errorHandler");
 dotenv.config();
@@ -73,9 +78,13 @@ app.use('/api/v1/doctors', doctorRoutes_1.default);
 app.use('/api/v1/doctor-professional-data', doctorProfessionalDataRoutes_1.default);
 app.use('/api/v1/tinnitus-responses', tinnitusResponseRoutes_1.default);
 app.use('/api/v1/tinnitus-notes', tinnitusNoteRoutes_1.default);
-app.use('/api/v1/investigaciones', investigacionRoutes_1.default);
-app.use('/api/v1/research-analysis', researchAnalysisRoutes_1.default);
 app.use('/api/v1/tinnitus-analysis', tinnitusAnalysisRoutes_1.default);
+app.use('/api/v1/tinnitus-notes-analysis', tinnitusNotesAnalysisRoutes_1.default);
+app.use('/api/v1/investigaciones', investigacionRoutes_1.default);
+app.use('/api/v1/research-notes/analysis', researchNoteAnalysisRoutes_1.default);
+app.get('/api/v1/research/:researchId/analysis', authMiddleware_1.authMiddleware, ResearchNoteAnalysisController_1.ResearchNoteAnalysisController.findByResearchId);
+app.use('/api/v1/research-analysis', researchAnalysisRoutes_1.default);
+app.use('/api/v1/calendar-events', calendarEventRoutes_1.default);
 app.use(errorHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 app.listen(PORT, () => {

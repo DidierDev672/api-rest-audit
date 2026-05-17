@@ -50,12 +50,12 @@ export class GetAllInvestigacionesUseCase {
 export class GetInvestigacionByIdUseCase {
   constructor(private readonly repository: IInvestigacionRepository) {}
 
-  async execute(id: string): Promise<Investigacion | null> {
+  async execute(id: string): Promise<Investigacion[] | null> {
     try {
       IdValidator.validate(id, 'Investigacion');
       Logger.info('Obteniendo investigación por ID', { id });
       
-      const result = await this.repository.findById(id);
+      const result = await this.repository.findAllById(id);
       
       if (!result) {
         Logger.warning('Investigación no encontrada', { id });

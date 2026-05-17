@@ -12,6 +12,16 @@ const repository = new ResearchAnalysisRepository();
 const auditoryResearchRepository = new AuditoryResearchRepository();
 
 export class ResearchAnalysisController {
+  static async findAll(req: Request, res: Response) {
+    try {
+      const analyses = await repository.findAll();
+      res.json(analyses);
+    } catch (error) {
+      Logger.danger('Error in ResearchAnalysisController.findAll', { error: (error as Error).message });
+      res.status(500).json({ error: (error as Error).message });
+    }
+  }
+
   static async create(req: Request, res: Response) {
     try {
       const data = CreateResearchAnalysisSchema.parse(req.body);

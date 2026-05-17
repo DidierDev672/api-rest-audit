@@ -8,7 +8,7 @@ exports.NoteReferenceSchema = zod_1.z.object({
     updatedAt: zod_1.z.string().min(1, 'Updated date is required'),
 });
 exports.AnalysisSchema = zod_1.z.object({
-    summary: zod_1.z.string().min(1, 'Summary is required'),
+    summary: zod_1.z.string(),
     generatedAt: zod_1.z.string().min(1, 'Generated date is required'),
     model: zod_1.z.string().min(1, 'Model is required'),
 });

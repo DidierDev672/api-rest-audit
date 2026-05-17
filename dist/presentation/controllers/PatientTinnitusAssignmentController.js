@@ -219,6 +219,35 @@ class PatientTinnitusAssignmentController {
             res.status(500).json({ error: errorMessage });
         }
     }
+    static async updateStatus(req, res) {
+        try {
+            const { id } = req.params;
+            Logger_1.Logger.info('Actualizando estado de asignación', { id, body: req.body });
+            const data = dto_1.UpdateTinnitusAssignmentSchema.parse(req.body);
+            const useCase = new usecases_1.UpdateTinnitusAssignmentUseCase(assignmentRepository, patientRepository, tinnitusRepository);
+            const result = await useCase.execute(id, data.status);
+            Logger_1.Logger.success('Estado de asignación actualizado', { id, status: data.status });
+            res.json(result);
+        }
+        catch (error) {
+            const errorMessage = error.message;
+            if (error instanceof zod_1.ZodError) {
+                res.status(400).json({ error: error.errors });
+                return;
+            }
+            if (errorMessage.includes('no existe') ||
+                errorMessage.includes('ID es requerido') ||
+                errorMessage.includes('no es válido') ||
+                errorMessage.includes('No se puede actualizar')) {
+                res.status(400).json({ error: errorMessage });
+                return;
+            }
+            Logger_1.Logger.danger('Error en PatientTinnitusAssignmentController.updateStatus', {
+                error: errorMessage,
+            });
+            res.status(500).json({ error: errorMessage });
+        }
+    }
 }
 exports.PatientTinnitusAssignmentController = PatientTinnitusAssignmentController;
 //# sourceMappingURL=PatientTinnitusAssignmentController.js.map

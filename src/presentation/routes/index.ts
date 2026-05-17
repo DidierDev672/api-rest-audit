@@ -15,5 +15,8 @@ export * from './doctorRoutes';
 export * from './doctorProfessionalDataRoutes';
 export * from './investigacionRoutes';
 export * from './researchAnalysisRoutes';
+export * from './researchNoteAnalysisRoutes';
 export * from './tinnitusAnalysisRoutes';
 export * from './tinnitusNotesAnalysisRoutes';
+export * from './calendarEventRoutes';
+export * from './calendarAiAnalysisRoutes';

@@ -16,6 +16,18 @@ export declare class GetAllInvestigacionesUseCase {
 export declare class GetInvestigacionByIdUseCase {
     private readonly repository;
     constructor(repository: IInvestigacionRepository);
-    execute(id: string): Promise<Investigacion | null>;
+    execute(id: string): Promise<Investigacion[] | null>;
+}
+export declare class UpdateInvestigacionUseCase {
+    private readonly repository;
+    constructor(repository: IInvestigacionRepository);
+    execute(id_resource: string, data: {
+        content_resource: string;
+    }): Promise<Investigacion>;
+}
+export declare class DeleteInvestigacionUseCase {
+    private readonly repository;
+    constructor(repository: IInvestigacionRepository);
+    execute(id_resource: string): Promise<void>;
 }
 //# sourceMappingURL=InvestigacionUseCases.d.ts.map

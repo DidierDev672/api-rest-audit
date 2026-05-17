@@ -45,6 +45,17 @@ export class InvestigacionRepository implements IInvestigacionRepository {
     return this.mapToEntity(data);
   }
 
+  async findAllById(id: string): Promise<Investigacion[] | null> {
+    const { data, error } = await supabase
+      .from(this.table)
+      .select('*')
+      .eq('id_resource', id)
+      .order('created_at', { ascending: false });
+
+    if (error || !data) return null;
+    return data.map(this.mapToEntity);
+  }
+
   async update(id_resource: string, data: Partial<Investigacion>): Promise<Investigacion> {
     const now = new Date();
 

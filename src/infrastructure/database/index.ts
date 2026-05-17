@@ -16,5 +16,8 @@ export * from './DoctorRepository';
 export * from './DoctorProfessionalDataRepository';
 export * from './InvestigacionRepository';
 export * from './ResearchAnalysisRepository';
+export * from './ResearchNoteAnalysisRepository';
 export * from './TinnitusAnalysisRepository';
 export * from './TinnitusNotesAnalysisRepository';
+export * from './CalendarEventRepository';
+export * from './CalendarAiAnalysisRepository';

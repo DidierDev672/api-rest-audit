@@ -16,3 +16,5 @@ export * from './DoctorProfessionalDataUseCases';
 export * from './InvestigacionUseCases';
 export * from './TinnitusAnalysisUseCases';
 export * from './TinnitusNotesAnalysisUseCases';
+export * from './CalendarEventUseCases';
+export * from './CalendarAiAnalysisUseCases';
