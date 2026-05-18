@@ -23,6 +23,9 @@ import tinnitusNotesAnalysisRoutes from '../../presentation/routes/tinnitusNotes
 import researchNoteAnalysisRoutes from '../../presentation/routes/researchNoteAnalysisRoutes';
 import calendarEventRoutes from '../../presentation/routes/calendarEventRoutes';
 import calendarAiAnalysisRoutes from '../../presentation/routes/calendarAiAnalysisRoutes';
+import calendarScheduledTaskRoutes from '../../presentation/routes/calendarScheduledTaskRoutes';
+import n8nRoutes from '../../presentation/routes/n8nRoutes';
+import { startCalendarTaskScheduler } from '../scheduler/CalendarTaskScheduler';
 import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
 import { authMiddleware } from '../middleware/authMiddleware';
 import { Logger } from '../logger/Logger';
@@ -64,12 +67,15 @@ app.get('/api/v1/research/:researchId/analysis', authMiddleware, ResearchNoteAna
 app.use('/api/v1/research-analysis', researchAnalysisRoutes);
 app.use('/api/v1/calendar-events', calendarEventRoutes);
 app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes);
+app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes);
+app.use('/api/v1/integrations/n8n', n8nRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
   Logger.success(`Servidor corriendo en puerto ${PORT}`);
+  startCalendarTaskScheduler();
 });
 
 export default app;

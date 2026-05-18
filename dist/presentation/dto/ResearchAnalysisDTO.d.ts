@@ -18,12 +18,12 @@ export declare const AnalysisSchema: z.ZodObject<{
     model: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     model: string;
-    summary: string;
     generatedAt: string;
+    summary: string;
 }, {
     model: string;
-    summary: string;
     generatedAt: string;
+    summary: string;
 }>;
 export declare const CreateResearchAnalysisSchema: z.ZodObject<{
     researchId: z.ZodString;
@@ -33,12 +33,12 @@ export declare const CreateResearchAnalysisSchema: z.ZodObject<{
         model: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         model: string;
-        summary: string;
         generatedAt: string;
+        summary: string;
     }, {
         model: string;
-        summary: string;
         generatedAt: string;
+        summary: string;
     }>;
     notesCount: z.ZodNumber;
     notesReferences: z.ZodArray<z.ZodObject<{
@@ -58,8 +58,8 @@ export declare const CreateResearchAnalysisSchema: z.ZodObject<{
     researchId: string;
     analysis: {
         model: string;
-        summary: string;
         generatedAt: string;
+        summary: string;
     };
     notesCount: number;
     notesReferences: {
@@ -71,8 +71,8 @@ export declare const CreateResearchAnalysisSchema: z.ZodObject<{
     researchId: string;
     analysis: {
         model: string;
-        summary: string;
         generatedAt: string;
+        summary: string;
     };
     notesCount: number;
     notesReferences: {

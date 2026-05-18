@@ -35,4 +35,7 @@ __exportStar(require("./ResearchNoteAnalysisDTO"), exports);
 __exportStar(require("./TinnitusAnalysisDTO"), exports);
 __exportStar(require("./TinnitusNotesAnalysisDTO"), exports);
 __exportStar(require("./CalendarEventDTO"), exports);
+__exportStar(require("./CalendarAiAnalysisDTO"), exports);
+__exportStar(require("./CalendarScheduledTaskDTO"), exports);
+__exportStar(require("./N8nTextDTO"), exports);
 //# sourceMappingURL=index.js.map

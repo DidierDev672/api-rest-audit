@@ -44,11 +44,20 @@ class CalendarEventController {
             const researchUseCase = new usecases_2.GetAllAuditoryResearchUseCase(researchRepo);
             const researchList = await researchUseCase.execute();
             const researchMap = new Map(researchList.map(r => [r.id, r.name]));
-            const eventsWithDate = events.map(event => ({
-                ...event,
-                date: event.startDate,
-                researchName: event.researchId ? (researchMap.get(event.researchId) || null) : null,
-            }));
+            const aiRepo = new database_1.CalendarAiAnalysisRepository();
+            const eventIds = events.map(e => e.id);
+            const analysisSummary = await aiRepo.getEventAnalysisSummary(eventIds);
+            const analysisMap = new Map(analysisSummary.map(a => [a.calendarEventId, a]));
+            const eventsWithDate = events.map(event => {
+                const summary = analysisMap.get(event.id);
+                return {
+                    ...event,
+                    date: event.startDate,
+                    researchName: event.researchId ? (researchMap.get(event.researchId) || null) : null,
+                    hasAiAnalysis: summary ? summary.count > 0 : false,
+                    lastAiAnalysisAt: summary?.lastGeneratedAt || null,
+                };
+            });
             res.json({
                 researchList,
                 events: eventsWithDate,
@@ -124,6 +133,7 @@ class CalendarEventController {
             const { id } = req.params;
             const useCase = new usecases_1.DeleteCalendarEventUseCase(repository);
             await useCase.execute(id);
+            await new database_1.CalendarScheduledTaskRepository().cancelByCalendarEventId(id);
             res.status(204).send();
         }
         catch (error) {

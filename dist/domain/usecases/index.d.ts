@@ -17,4 +17,7 @@ export * from './InvestigacionUseCases';
 export * from './TinnitusAnalysisUseCases';
 export * from './TinnitusNotesAnalysisUseCases';
 export * from './CalendarEventUseCases';
+export * from './CalendarAiAnalysisUseCases';
+export * from './CalendarScheduledTaskUseCases';
+export * from './N8nTextUseCases';
 //# sourceMappingURL=index.d.ts.map

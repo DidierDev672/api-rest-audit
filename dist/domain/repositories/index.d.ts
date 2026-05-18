@@ -18,4 +18,10 @@ export * from './IResearchAnalysisRepository';
 export * from './IResearchNoteAnalysisRepository';
 export * from './ITinnitusAnalysisRepository';
 export * from './ICalendarEventRepository';
+export * from './ICalendarAiAnalysisRepository';
+export * from './ICalendarScheduledTaskRepository';
+export * from './ICalendarNotificationRepository';
+export * from './IN8nWebhookLogRepository';
+export * from './IN8nTextExchangeRepository';
+export * from './IN8nMarkdownDocumentRepository';
 //# sourceMappingURL=index.d.ts.map

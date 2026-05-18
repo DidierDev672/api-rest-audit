@@ -19,4 +19,5 @@ export * from './researchNoteAnalysisRoutes';
 export * from './tinnitusAnalysisRoutes';
 export * from './tinnitusNotesAnalysisRoutes';
 export * from './calendarEventRoutes';
+export * from './calendarAiAnalysisRoutes';
 //# sourceMappingURL=index.d.ts.map

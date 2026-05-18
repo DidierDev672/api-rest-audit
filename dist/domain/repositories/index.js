@@ -34,4 +34,10 @@ __exportStar(require("./IResearchAnalysisRepository"), exports);
 __exportStar(require("./IResearchNoteAnalysisRepository"), exports);
 __exportStar(require("./ITinnitusAnalysisRepository"), exports);
 __exportStar(require("./ICalendarEventRepository"), exports);
+__exportStar(require("./ICalendarAiAnalysisRepository"), exports);
+__exportStar(require("./ICalendarScheduledTaskRepository"), exports);
+__exportStar(require("./ICalendarNotificationRepository"), exports);
+__exportStar(require("./IN8nWebhookLogRepository"), exports);
+__exportStar(require("./IN8nTextExchangeRepository"), exports);
+__exportStar(require("./IN8nMarkdownDocumentRepository"), exports);
 //# sourceMappingURL=index.js.map

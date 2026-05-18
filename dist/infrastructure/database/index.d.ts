@@ -20,4 +20,10 @@ export * from './ResearchNoteAnalysisRepository';
 export * from './TinnitusAnalysisRepository';
 export * from './TinnitusNotesAnalysisRepository';
 export * from './CalendarEventRepository';
+export * from './CalendarAiAnalysisRepository';
+export * from './CalendarScheduledTaskRepository';
+export * from './CalendarNotificationRepository';
+export * from './N8nWebhookLogRepository';
+export * from './N8nTextExchangeRepository';
+export * from './N8nMarkdownDocumentRepository';
 //# sourceMappingURL=index.d.ts.map

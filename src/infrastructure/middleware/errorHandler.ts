@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { Logger } from '../logger/Logger';
 import { ZodError } from 'zod';
+import { N8nIntegrationError } from '../../domain/errors/N8nIntegrationError';
+import { ValidationError } from '../../domain/errors/ValidationError';
 
 export class AppError extends Error {
   statusCode: number;
@@ -49,6 +51,16 @@ export const errorHandler = (
     method: req.method,
     stack: err.stack,
   });
+
+  if (err instanceof ValidationError) {
+    res.status(400).json({ error: err.message });
+    return;
+  }
+
+  if (err instanceof N8nIntegrationError) {
+    res.status(err.statusCode).json({ error: err.message });
+    return;
+  }
 
   if (err instanceof ValidationAppError) {
     res.status(err.statusCode).json({

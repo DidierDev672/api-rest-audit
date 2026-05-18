@@ -36,4 +36,7 @@ __exportStar(require("./ResearchNoteAnalysisController"), exports);
 __exportStar(require("./TinnitusAnalysisController"), exports);
 __exportStar(require("./TinnitusNotesAnalysisController"), exports);
 __exportStar(require("./CalendarEventController"), exports);
+__exportStar(require("./CalendarAiAnalysisController"), exports);
+__exportStar(require("./CalendarScheduledTaskController"), exports);
+__exportStar(require("./N8nIntegrationController"), exports);
 //# sourceMappingURL=index.js.map

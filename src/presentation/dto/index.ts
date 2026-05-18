@@ -20,3 +20,5 @@ export * from './TinnitusAnalysisDTO';
 export * from './TinnitusNotesAnalysisDTO';
 export * from './CalendarEventDTO';
 export * from './CalendarAiAnalysisDTO';
+export * from './CalendarScheduledTaskDTO';
+export * from './N8nTextDTO';

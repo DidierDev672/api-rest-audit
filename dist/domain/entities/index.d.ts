@@ -253,4 +253,39 @@ export interface CalendarEvent extends Entity {
     endTime: string;
     researchId: string | null;
 }
+export interface CalendarAiAnalysis extends Entity {
+    calendarEventId: string;
+    researchId: string | null;
+    eventTitle: string;
+    eventType: 'task' | 'research';
+    eventDate: string;
+    researchName: string | null;
+    content: string;
+    model: string | null;
+    generatedAt: Date;
+}
+export interface CalendarScheduledTask extends Entity {
+    calendarEventId: string | null;
+    title: string;
+    message: string;
+    scheduledAt: Date;
+    status: 'pending' | 'processing' | 'sent' | 'failed' | 'cancelled';
+    channel: 'in_app' | 'webhook' | 'n8n';
+    reminderMinutesBefore: number | null;
+    metadata: Record<string, unknown>;
+    sentAt: Date | null;
+    lastError: string | null;
+}
+export interface CalendarNotification {
+    id: string;
+    scheduledTaskId: string | null;
+    calendarEventId: string | null;
+    title: string;
+    message: string;
+    channel: 'in_app' | 'webhook' | 'n8n';
+    status: 'delivered' | 'failed';
+    payload: Record<string, unknown>;
+    deliveredAt: Date;
+    createdAt: Date;
+}
 //# sourceMappingURL=index.d.ts.map

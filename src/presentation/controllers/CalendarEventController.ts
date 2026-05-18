@@ -6,7 +6,12 @@ import {
   UpdateCalendarEventUseCase,
   DeleteCalendarEventUseCase,
 } from '../../domain/usecases';
-import { CalendarEventRepository, AuditoryResearchRepository, CalendarAiAnalysisRepository } from '../../infrastructure/database';
+import {
+  CalendarEventRepository,
+  AuditoryResearchRepository,
+  CalendarAiAnalysisRepository,
+  CalendarScheduledTaskRepository,
+} from '../../infrastructure/database';
 import { GetAllAuditoryResearchUseCase } from '../../domain/usecases';
 import { CreateCalendarEventDTO, UpdateCalendarEventDTO, CalendarEventQueryDTO } from '../dto';
 import { ZodError } from 'zod';
@@ -150,6 +155,7 @@ export class CalendarEventController {
       const { id } = req.params;
       const useCase = new DeleteCalendarEventUseCase(repository);
       await useCase.execute(id);
+      await new CalendarScheduledTaskRepository().cancelByCalendarEventId(id);
       res.status(204).send();
     } catch (error) {
       const errorMessage = (error as Error).message;

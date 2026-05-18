@@ -36,4 +36,10 @@ __exportStar(require("./ResearchNoteAnalysisRepository"), exports);
 __exportStar(require("./TinnitusAnalysisRepository"), exports);
 __exportStar(require("./TinnitusNotesAnalysisRepository"), exports);
 __exportStar(require("./CalendarEventRepository"), exports);
+__exportStar(require("./CalendarAiAnalysisRepository"), exports);
+__exportStar(require("./CalendarScheduledTaskRepository"), exports);
+__exportStar(require("./CalendarNotificationRepository"), exports);
+__exportStar(require("./N8nWebhookLogRepository"), exports);
+__exportStar(require("./N8nTextExchangeRepository"), exports);
+__exportStar(require("./N8nMarkdownDocumentRepository"), exports);
 //# sourceMappingURL=index.js.map

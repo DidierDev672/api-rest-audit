@@ -1,0 +1,1 @@
+{"version":3,"file":"N8nIntegrationError.d.ts","sourceRoot":"","sources":["../../../src/domain/errors/N8nIntegrationError.ts"],"names":[],"mappings":"AAAA,qBAAa,mBAAoB,SAAQ,KAAK;aAG1B,UAAU,EAAE,MAAM;gBADlC,OAAO,EAAE,MAAM,EACC,UAAU,GAAE,MAAY;CAK3C"}

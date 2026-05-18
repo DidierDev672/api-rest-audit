@@ -50,6 +50,10 @@ const tinnitusAnalysisRoutes_1 = __importDefault(require("../../presentation/rou
 const tinnitusNotesAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/tinnitusNotesAnalysisRoutes"));
 const researchNoteAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/researchNoteAnalysisRoutes"));
 const calendarEventRoutes_1 = __importDefault(require("../../presentation/routes/calendarEventRoutes"));
+const calendarAiAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/calendarAiAnalysisRoutes"));
+const calendarScheduledTaskRoutes_1 = __importDefault(require("../../presentation/routes/calendarScheduledTaskRoutes"));
+const n8nRoutes_1 = __importDefault(require("../../presentation/routes/n8nRoutes"));
+const CalendarTaskScheduler_1 = require("../scheduler/CalendarTaskScheduler");
 const ResearchNoteAnalysisController_1 = require("../../presentation/controllers/ResearchNoteAnalysisController");
 const authMiddleware_1 = require("../middleware/authMiddleware");
 const Logger_1 = require("../logger/Logger");
@@ -85,10 +89,14 @@ app.use('/api/v1/research-notes/analysis', researchNoteAnalysisRoutes_1.default)
 app.get('/api/v1/research/:researchId/analysis', authMiddleware_1.authMiddleware, ResearchNoteAnalysisController_1.ResearchNoteAnalysisController.findByResearchId);
 app.use('/api/v1/research-analysis', researchAnalysisRoutes_1.default);
 app.use('/api/v1/calendar-events', calendarEventRoutes_1.default);
+app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes_1.default);
+app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes_1.default);
+app.use('/api/v1/integrations/n8n', n8nRoutes_1.default);
 app.use(errorHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 app.listen(PORT, () => {
     Logger_1.Logger.success(`Servidor corriendo en puerto ${PORT}`);
+    (0, CalendarTaskScheduler_1.startCalendarTaskScheduler)();
 });
 exports.default = app;
 //# sourceMappingURL=index.js.map

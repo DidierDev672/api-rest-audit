@@ -1,0 +1,1 @@
+{"version":3,"file":"IN8nTextGateway.d.ts","sourceRoot":"","sources":["../../../src/domain/ports/IN8nTextGateway.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,eAAe,EAAE,MAAM,4BAA4B,CAAC;AAE7E,MAAM,WAAW,eAAe;IAC9B,QAAQ,CAAC,OAAO,EAAE,cAAc,GAAG,OAAO,CAAC,eAAe,CAAC,CAAC;CAC7D"}

@@ -9,12 +9,12 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
             content: z.ZodString;
             timestamp: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }, {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }>, "many">>;
         summary: z.ZodOptional<z.ZodString>;
@@ -25,8 +25,8 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -37,8 +37,8 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -71,8 +71,8 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -93,8 +93,8 @@ export declare const CreateResearchChatSessionSchema: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -120,12 +120,12 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
             content: z.ZodString;
             timestamp: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }, {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }>, "many">>;
         summary: z.ZodOptional<z.ZodString>;
@@ -136,8 +136,8 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -148,8 +148,8 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -182,8 +182,8 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;
@@ -204,8 +204,8 @@ export declare const CreateResearchChatSessionDTO: z.ZodObject<{
         title: string;
         originalDescription?: string | undefined;
         messages?: {
-            role: "user" | "assistant";
             content: string;
+            role: "user" | "assistant";
             timestamp: string;
         }[] | undefined;
         summary?: string | undefined;

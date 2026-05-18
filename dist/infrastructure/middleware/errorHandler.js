@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.requestLogger = exports.notFoundHandler = exports.errorHandler = exports.ConflictAppError = exports.NotFoundAppError = exports.ValidationAppError = exports.AppError = void 0;
 const Logger_1 = require("../logger/Logger");
 const zod_1 = require("zod");
+const N8nIntegrationError_1 = require("../../domain/errors/N8nIntegrationError");
+const ValidationError_1 = require("../../domain/errors/ValidationError");
 class AppError extends Error {
     constructor(message, statusCode) {
         super(message);
@@ -41,6 +43,14 @@ const errorHandler = (err, req, res, _next) => {
         method: req.method,
         stack: err.stack,
     });
+    if (err instanceof ValidationError_1.ValidationError) {
+        res.status(400).json({ error: err.message });
+        return;
+    }
+    if (err instanceof N8nIntegrationError_1.N8nIntegrationError) {
+        res.status(err.statusCode).json({ error: err.message });
+        return;
+    }
     if (err instanceof ValidationAppError) {
         res.status(err.statusCode).json({
             error: err.message,

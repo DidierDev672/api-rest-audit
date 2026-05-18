@@ -20,4 +20,7 @@ export * from './ResearchNoteAnalysisController';
 export * from './TinnitusAnalysisController';
 export * from './TinnitusNotesAnalysisController';
 export * from './CalendarEventController';
+export * from './CalendarAiAnalysisController';
+export * from './CalendarScheduledTaskController';
+export * from './N8nIntegrationController';
 //# sourceMappingURL=index.d.ts.map

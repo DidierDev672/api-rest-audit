@@ -33,4 +33,7 @@ __exportStar(require("./InvestigacionUseCases"), exports);
 __exportStar(require("./TinnitusAnalysisUseCases"), exports);
 __exportStar(require("./TinnitusNotesAnalysisUseCases"), exports);
 __exportStar(require("./CalendarEventUseCases"), exports);
+__exportStar(require("./CalendarAiAnalysisUseCases"), exports);
+__exportStar(require("./CalendarScheduledTaskUseCases"), exports);
+__exportStar(require("./N8nTextUseCases"), exports);
 //# sourceMappingURL=index.js.map
