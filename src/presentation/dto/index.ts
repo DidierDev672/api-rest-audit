@@ -22,3 +22,5 @@ export * from './CalendarEventDTO';
 export * from './CalendarAiAnalysisDTO';
 export * from './CalendarScheduledTaskDTO';
 export * from './N8nTextDTO';
+export * from './AiDocumentAnalysisDTO';
+export * from './AiDocumentRedactionDTO';

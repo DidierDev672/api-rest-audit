@@ -24,3 +24,5 @@ export * from './ICalendarNotificationRepository';
 export * from './IN8nWebhookLogRepository';
 export * from './IN8nTextExchangeRepository';
 export * from './IN8nMarkdownDocumentRepository';
+export * from './IAiDocumentAnalysisRepository';
+export * from './IAiDocumentRedactionRepository';

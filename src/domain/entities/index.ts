@@ -259,6 +259,8 @@ export interface ResearchNoteAnalysis extends Entity {
 }
 
 export * from './PatientLoginEntity'
+export * from './AiDocumentAnalysisEntity'
+export * from './AiDocumentRedactionEntity'
 
 export interface TinnitusAnalysis extends Entity {
   idPatient: string;

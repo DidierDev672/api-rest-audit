@@ -23,3 +23,5 @@ export * from './CalendarEventController';
 export * from './CalendarAiAnalysisController';
 export * from './CalendarScheduledTaskController';
 export * from './N8nIntegrationController';
+export * from './AiDocumentAnalysisController';
+export * from './AiDocumentRedactionController';

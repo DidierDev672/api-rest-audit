@@ -25,6 +25,8 @@ import calendarEventRoutes from '../../presentation/routes/calendarEventRoutes';
 import calendarAiAnalysisRoutes from '../../presentation/routes/calendarAiAnalysisRoutes';
 import calendarScheduledTaskRoutes from '../../presentation/routes/calendarScheduledTaskRoutes';
 import n8nRoutes from '../../presentation/routes/n8nRoutes';
+import aiDocumentAnalysisRoutes from '../../presentation/routes/aiDocumentAnalysisRoutes';
+import aiDocumentRedactionRoutes from '../../presentation/routes/aiDocumentRedactionRoutes';
 import { startCalendarTaskScheduler } from '../scheduler/CalendarTaskScheduler';
 import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
 import { authMiddleware } from '../middleware/authMiddleware';
@@ -69,6 +71,8 @@ app.use('/api/v1/calendar-events', calendarEventRoutes);
 app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes);
 app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes);
 app.use('/api/v1/integrations/n8n', n8nRoutes);
+app.use('/api/v1/ai-document-analyses', aiDocumentAnalysisRoutes);
+app.use('/api/v1/ai-document-redactions', aiDocumentRedactionRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
