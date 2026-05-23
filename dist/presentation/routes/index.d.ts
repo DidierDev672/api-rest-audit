@@ -20,4 +20,6 @@ export * from './tinnitusAnalysisRoutes';
 export * from './tinnitusNotesAnalysisRoutes';
 export * from './calendarEventRoutes';
 export * from './calendarAiAnalysisRoutes';
+export * from './aiDocumentAnalysisRoutes';
+export * from './aiDocumentRedactionRoutes';
 //# sourceMappingURL=index.d.ts.map

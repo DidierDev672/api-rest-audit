@@ -12,18 +12,18 @@ export declare const CreateScreeningSchema: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -32,8 +32,8 @@ export declare const CreateScreeningSchema: z.ZodObject<{
         description?: string | undefined;
     }, {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -46,8 +46,8 @@ export declare const CreateScreeningSchema: z.ZodObject<{
     title: string;
     questions: {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -60,8 +60,8 @@ export declare const CreateScreeningSchema: z.ZodObject<{
     title: string;
     questions: {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -83,18 +83,18 @@ export declare const UpdateScreeningSchema: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -103,8 +103,8 @@ export declare const UpdateScreeningSchema: z.ZodObject<{
         description?: string | undefined;
     }, {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -117,8 +117,8 @@ export declare const UpdateScreeningSchema: z.ZodObject<{
     description?: string | undefined;
     questions?: {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;
@@ -131,8 +131,8 @@ export declare const UpdateScreeningSchema: z.ZodObject<{
     description?: string | undefined;
     questions?: {
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         sound: string;

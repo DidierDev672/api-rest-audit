@@ -4,6 +4,7 @@ export interface IPatientRepository {
     findAll(): Promise<Patient[]>;
     findById(id: string): Promise<Patient | null>;
     findByDocumentNumber(documentNumber: string): Promise<Patient | null>;
+    searchByName(name: string): Promise<Patient[]>;
     update(id: string, patient: Partial<Patient>): Promise<Patient>;
     delete(id: string): Promise<void>;
 }

@@ -6,14 +6,14 @@ export declare const CreateTinnitusAnalysisSchema: z.ZodObject<{
     analysis: z.ZodString;
     model: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    analysis: string;
     model: string;
+    analysis: string;
     id_patient: string;
     id_tinnitus_questionnaires: string;
     id_tinnitus_response: string;
 }, {
-    analysis: string;
     model: string;
+    analysis: string;
     id_patient: string;
     id_tinnitus_questionnaires: string;
     id_tinnitus_response: string;

@@ -42,4 +42,6 @@ __exportStar(require("./CalendarNotificationRepository"), exports);
 __exportStar(require("./N8nWebhookLogRepository"), exports);
 __exportStar(require("./N8nTextExchangeRepository"), exports);
 __exportStar(require("./N8nMarkdownDocumentRepository"), exports);
+__exportStar(require("./AiDocumentRedactionRepository"), exports);
+__exportStar(require("./AiDocumentUploadRepository"), exports);
 //# sourceMappingURL=index.js.map

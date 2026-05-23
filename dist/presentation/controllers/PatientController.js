@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PatientController = void 0;
 const usecases_1 = require("../../domain/usecases");
+const SearchPatientsByNameUseCase_1 = require("../../application/use-cases/SearchPatientsByNameUseCase");
 const database_1 = require("../../infrastructure/database");
 const dto_1 = require("../dto");
 const zod_1 = require("zod");
@@ -30,6 +31,20 @@ class PatientController {
             }
             Logger_1.Logger.danger('Error en PatientController.create', { error: errorMessage });
             res.status(500).json({ error: errorMessage });
+        }
+    }
+    static async searchByName(req, res) {
+        try {
+            const name = String(req.query.name ?? '');
+            const useCase = new SearchPatientsByNameUseCase_1.SearchPatientsByNameUseCase(repository);
+            const result = await useCase.execute(name);
+            res.json(result);
+        }
+        catch (error) {
+            Logger_1.Logger.danger('Error en PatientController.searchByName', {
+                error: error.message,
+            });
+            res.status(500).json({ error: error.message });
         }
     }
     static async findAll(req, res) {

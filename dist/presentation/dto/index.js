@@ -38,4 +38,6 @@ __exportStar(require("./CalendarEventDTO"), exports);
 __exportStar(require("./CalendarAiAnalysisDTO"), exports);
 __exportStar(require("./CalendarScheduledTaskDTO"), exports);
 __exportStar(require("./N8nTextDTO"), exports);
+__exportStar(require("./AiDocumentAnalysisDTO"), exports);
+__exportStar(require("./AiDocumentRedactionDTO"), exports);
 //# sourceMappingURL=index.js.map

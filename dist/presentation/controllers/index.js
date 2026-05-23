@@ -39,4 +39,6 @@ __exportStar(require("./CalendarEventController"), exports);
 __exportStar(require("./CalendarAiAnalysisController"), exports);
 __exportStar(require("./CalendarScheduledTaskController"), exports);
 __exportStar(require("./N8nIntegrationController"), exports);
+__exportStar(require("./AiDocumentAnalysisController"), exports);
+__exportStar(require("./AiDocumentRedactionController"), exports);
 //# sourceMappingURL=index.js.map

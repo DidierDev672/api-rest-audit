@@ -4,6 +4,7 @@ import { PatientController } from '../controllers';
 const router = Router();
 
 router.post('/', PatientController.create);
+router.get('/search', PatientController.searchByName);
 router.get('/', PatientController.findAll);
 router.get('/:id', PatientController.findById);
 router.put('/:id', PatientController.update);

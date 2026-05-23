@@ -26,3 +26,4 @@ export * from './IN8nTextExchangeRepository';
 export * from './IN8nMarkdownDocumentRepository';
 export * from './IAiDocumentAnalysisRepository';
 export * from './IAiDocumentRedactionRepository';
+export * from './IAiDocumentUploadRepository';

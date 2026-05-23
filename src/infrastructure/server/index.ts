@@ -27,6 +27,7 @@ import calendarScheduledTaskRoutes from '../../presentation/routes/calendarSched
 import n8nRoutes from '../../presentation/routes/n8nRoutes';
 import aiDocumentAnalysisRoutes from '../../presentation/routes/aiDocumentAnalysisRoutes';
 import aiDocumentRedactionRoutes from '../../presentation/routes/aiDocumentRedactionRoutes';
+import aiDocumentUploadRoutes from '../../presentation/routes/aiDocumentUploadRoutes';
 import { startCalendarTaskScheduler } from '../scheduler/CalendarTaskScheduler';
 import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
 import { authMiddleware } from '../middleware/authMiddleware';
@@ -71,6 +72,7 @@ app.use('/api/v1/calendar-events', calendarEventRoutes);
 app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes);
 app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes);
 app.use('/api/v1/integrations/n8n', n8nRoutes);
+app.use('/api/v1/ai-document-uploads', aiDocumentUploadRoutes);
 app.use('/api/v1/ai-document-analyses', aiDocumentAnalysisRoutes);
 app.use('/api/v1/ai-document-redactions', aiDocumentRedactionRoutes);
 

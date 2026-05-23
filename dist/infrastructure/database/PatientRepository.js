@@ -61,6 +61,20 @@ class PatientRepository {
             return null;
         return this.mapToEntity(data);
     }
+    async searchByName(name) {
+        const query = name.trim();
+        if (query.length < 2)
+            return [];
+        const { data, error } = await supabase_1.supabase
+            .from(this.table)
+            .select('*')
+            .ilike('full_name', `%${query}%`)
+            .order('full_name', { ascending: true })
+            .limit(25);
+        if (error)
+            throw new Error(error.message);
+        return (data ?? []).map((row) => this.mapToEntity(row));
+    }
     async update(id, data) {
         const now = new Date();
         const updateData = {};

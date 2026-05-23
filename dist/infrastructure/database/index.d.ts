@@ -26,4 +26,6 @@ export * from './CalendarNotificationRepository';
 export * from './N8nWebhookLogRepository';
 export * from './N8nTextExchangeRepository';
 export * from './N8nMarkdownDocumentRepository';
+export * from './AiDocumentRedactionRepository';
+export * from './AiDocumentUploadRepository';
 //# sourceMappingURL=index.d.ts.map

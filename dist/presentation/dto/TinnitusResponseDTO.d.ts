@@ -4,12 +4,12 @@ export declare const OptionAnswerResponseSchema: z.ZodObject<{
     text: z.ZodString;
     value: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    text: string;
     value: number;
+    text: string;
     id?: string | undefined;
 }, {
-    text: string;
     value: number;
+    text: string;
     id?: string | undefined;
 }>;
 export declare const AnswerSchema: z.ZodObject<{
@@ -21,20 +21,20 @@ export declare const AnswerSchema: z.ZodObject<{
         text: z.ZodString;
         value: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        text: string;
         value: number;
+        text: string;
         id?: string | undefined;
     }, {
-        text: string;
         value: number;
+        text: string;
         id?: string | undefined;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     description: string;
     title: string;
     optionsAnswer: {
-        text: string;
         value: number;
+        text: string;
         id?: string | undefined;
     }[];
     id?: string | undefined;
@@ -42,8 +42,8 @@ export declare const AnswerSchema: z.ZodObject<{
     description: string;
     title: string;
     optionsAnswer: {
-        text: string;
         value: number;
+        text: string;
         id?: string | undefined;
     }[];
     id?: string | undefined;
@@ -60,20 +60,20 @@ export declare const CreateTinnitusResponseSchema: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -81,8 +81,8 @@ export declare const CreateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -94,8 +94,8 @@ export declare const CreateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -107,8 +107,8 @@ export declare const CreateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -126,20 +126,20 @@ export declare const UpdateTinnitusResponseSchema: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -147,8 +147,8 @@ export declare const UpdateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -160,8 +160,8 @@ export declare const UpdateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -173,8 +173,8 @@ export declare const UpdateTinnitusResponseSchema: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -192,20 +192,20 @@ export declare const CreateTinnitusResponseDTO: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -213,8 +213,8 @@ export declare const CreateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -226,8 +226,8 @@ export declare const CreateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -239,8 +239,8 @@ export declare const CreateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -258,20 +258,20 @@ export declare const UpdateTinnitusResponseDTO: z.ZodObject<{
             text: z.ZodString;
             value: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }, {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -279,8 +279,8 @@ export declare const UpdateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -292,8 +292,8 @@ export declare const UpdateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;
@@ -305,8 +305,8 @@ export declare const UpdateTinnitusResponseDTO: z.ZodObject<{
         description: string;
         title: string;
         optionsAnswer: {
-            text: string;
             value: number;
+            text: string;
             id?: string | undefined;
         }[];
         id?: string | undefined;

@@ -6,6 +6,7 @@ import {
   UpdatePatientUseCase,
   DeletePatientUseCase
 } from '../../domain/usecases';
+import { SearchPatientsByNameUseCase } from '../../application/use-cases/SearchPatientsByNameUseCase';
 import { PatientRepository } from '../../infrastructure/database';
 import { CreatePatientSchema, UpdatePatientSchema } from '../dto';
 import { ZodError } from 'zod';
@@ -35,6 +36,20 @@ export class PatientController {
       }
       Logger.danger('Error en PatientController.create', { error: errorMessage });
       res.status(500).json({ error: errorMessage });
+    }
+  }
+
+  static async searchByName(req: Request, res: Response) {
+    try {
+      const name = String(req.query.name ?? '');
+      const useCase = new SearchPatientsByNameUseCase(repository);
+      const result = await useCase.execute(name);
+      res.json(result);
+    } catch (error) {
+      Logger.danger('Error en PatientController.searchByName', {
+        error: (error as Error).message,
+      });
+      res.status(500).json({ error: (error as Error).message });
     }
   }
 

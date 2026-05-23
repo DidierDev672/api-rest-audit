@@ -227,6 +227,8 @@ export interface ResearchNoteAnalysis extends Entity {
     createdByUserId: string;
 }
 export * from './PatientLoginEntity';
+export * from './AiDocumentAnalysisEntity';
+export * from './AiDocumentRedactionEntity';
 export interface TinnitusAnalysis extends Entity {
     idPatient: string;
     idTinnitusQuestionnaires: string;

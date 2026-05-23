@@ -10,21 +10,21 @@ export declare const CreateCalendarAiAnalysisSchema: z.ZodObject<{
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     generatedAt: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    content: string;
     calendarEventId: string;
     eventTitle: string;
     eventType: "task" | "research";
     eventDate: string;
-    content: string;
     generatedAt: string;
     researchId?: string | number | null | undefined;
     researchName?: string | null | undefined;
     model?: string | null | undefined;
 }, {
+    content: string;
     calendarEventId: string;
     eventTitle: string;
     eventType: "task" | "research";
     eventDate: string;
-    content: string;
     generatedAt: string;
     researchId?: string | number | null | undefined;
     researchName?: string | null | undefined;
@@ -57,21 +57,21 @@ export declare const CreateCalendarAiAnalysisDTO: z.ZodObject<{
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     generatedAt: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    content: string;
     calendarEventId: string;
     eventTitle: string;
     eventType: "task" | "research";
     eventDate: string;
-    content: string;
     generatedAt: string;
     researchId?: string | number | null | undefined;
     researchName?: string | null | undefined;
     model?: string | null | undefined;
 }, {
+    content: string;
     calendarEventId: string;
     eventTitle: string;
     eventType: "task" | "research";
     eventDate: string;
-    content: string;
     generatedAt: string;
     researchId?: string | number | null | undefined;
     researchName?: string | null | undefined;

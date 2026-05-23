@@ -15,5 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./PatientLoginEntity"), exports);
+__exportStar(require("./AiDocumentAnalysisEntity"), exports);
+__exportStar(require("./AiDocumentRedactionEntity"), exports);
 ;
 //# sourceMappingURL=index.js.map

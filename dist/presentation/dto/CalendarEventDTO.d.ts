@@ -9,17 +9,17 @@ export declare const CreateCalendarEventSchema: z.ZodObject<{
     endTime: z.ZodString;
     researchId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, "strip", z.ZodTypeAny, {
+    type: "task" | "research";
     description: string;
     title: string;
-    type: "task" | "research";
     startDate: string;
     endDate: string;
     startTime: string;
     endTime: string;
     researchId?: string | null | undefined;
 }, {
-    title: string;
     type: "task" | "research";
+    title: string;
     startDate: string;
     endDate: string;
     startTime: string;
@@ -75,17 +75,17 @@ export declare const CreateCalendarEventDTO: z.ZodObject<{
     endTime: z.ZodString;
     researchId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, "strip", z.ZodTypeAny, {
+    type: "task" | "research";
     description: string;
     title: string;
-    type: "task" | "research";
     startDate: string;
     endDate: string;
     startTime: string;
     endTime: string;
     researchId?: string | null | undefined;
 }, {
-    title: string;
     type: "task" | "research";
+    title: string;
     startDate: string;
     endDate: string;
     startTime: string;

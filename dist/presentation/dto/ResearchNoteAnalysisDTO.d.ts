@@ -7,16 +7,16 @@ export declare const CreateResearchNoteAnalysisSchema: z.ZodObject<{
     model_name: z.ZodOptional<z.ZodString>;
     language: z.ZodDefault<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    notes_count: number;
     source: "gemini" | "manual" | "other";
     research_id: string;
     analysis_text: string;
-    notes_count: number;
     language: string;
     model_name?: string | undefined;
 }, {
+    notes_count: number;
     research_id: string;
     analysis_text: string;
-    notes_count: number;
     source?: "gemini" | "manual" | "other" | undefined;
     model_name?: string | undefined;
     language?: string | undefined;

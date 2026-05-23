@@ -36,4 +36,6 @@ __exportStar(require("./tinnitusAnalysisRoutes"), exports);
 __exportStar(require("./tinnitusNotesAnalysisRoutes"), exports);
 __exportStar(require("./calendarEventRoutes"), exports);
 __exportStar(require("./calendarAiAnalysisRoutes"), exports);
+__exportStar(require("./aiDocumentAnalysisRoutes"), exports);
+__exportStar(require("./aiDocumentRedactionRoutes"), exports);
 //# sourceMappingURL=index.js.map

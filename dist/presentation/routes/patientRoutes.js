@@ -4,6 +4,7 @@ const express_1 = require("express");
 const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 router.post('/', controllers_1.PatientController.create);
+router.get('/search', controllers_1.PatientController.searchByName);
 router.get('/', controllers_1.PatientController.findAll);
 router.get('/:id', controllers_1.PatientController.findById);
 router.put('/:id', controllers_1.PatientController.update);

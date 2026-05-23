@@ -40,4 +40,7 @@ __exportStar(require("./ICalendarNotificationRepository"), exports);
 __exportStar(require("./IN8nWebhookLogRepository"), exports);
 __exportStar(require("./IN8nTextExchangeRepository"), exports);
 __exportStar(require("./IN8nMarkdownDocumentRepository"), exports);
+__exportStar(require("./IAiDocumentAnalysisRepository"), exports);
+__exportStar(require("./IAiDocumentRedactionRepository"), exports);
+__exportStar(require("./IAiDocumentUploadRepository"), exports);
 //# sourceMappingURL=index.js.map

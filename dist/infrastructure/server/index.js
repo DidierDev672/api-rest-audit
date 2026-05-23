@@ -53,6 +53,9 @@ const calendarEventRoutes_1 = __importDefault(require("../../presentation/routes
 const calendarAiAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/calendarAiAnalysisRoutes"));
 const calendarScheduledTaskRoutes_1 = __importDefault(require("../../presentation/routes/calendarScheduledTaskRoutes"));
 const n8nRoutes_1 = __importDefault(require("../../presentation/routes/n8nRoutes"));
+const aiDocumentAnalysisRoutes_1 = __importDefault(require("../../presentation/routes/aiDocumentAnalysisRoutes"));
+const aiDocumentRedactionRoutes_1 = __importDefault(require("../../presentation/routes/aiDocumentRedactionRoutes"));
+const aiDocumentUploadRoutes_1 = __importDefault(require("../../presentation/routes/aiDocumentUploadRoutes"));
 const CalendarTaskScheduler_1 = require("../scheduler/CalendarTaskScheduler");
 const ResearchNoteAnalysisController_1 = require("../../presentation/controllers/ResearchNoteAnalysisController");
 const authMiddleware_1 = require("../middleware/authMiddleware");
@@ -92,6 +95,9 @@ app.use('/api/v1/calendar-events', calendarEventRoutes_1.default);
 app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes_1.default);
 app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes_1.default);
 app.use('/api/v1/integrations/n8n', n8nRoutes_1.default);
+app.use('/api/v1/ai-document-uploads', aiDocumentUploadRoutes_1.default);
+app.use('/api/v1/ai-document-analyses', aiDocumentAnalysisRoutes_1.default);
+app.use('/api/v1/ai-document-redactions', aiDocumentRedactionRoutes_1.default);
 app.use(errorHandler_1.notFoundHandler);
 app.use(errorHandler_1.errorHandler);
 app.listen(PORT, () => {
