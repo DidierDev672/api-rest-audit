@@ -65,6 +65,21 @@ export class AiDocumentUploadController {
     }
   }
 
+  static async getSignedUrl(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      IdValidator.validate(id, 'AiDocumentUpload');
+      const expiresIn = Number(req.query.expiresIn ?? 3600);
+      const data = await getUseCase.getSignedDownloadUrl(
+        id,
+        Number.isFinite(expiresIn) && expiresIn > 0 ? expiresIn : 3600,
+      );
+      res.json({ status: 'success', data });
+    } catch (error) {
+      AiDocumentUploadController.handleError(error, res, 'getSignedUrl');
+    }
+  }
+
   static async queueAnalysis(req: Request, res: Response) {
     try {
       const { id } = req.params;

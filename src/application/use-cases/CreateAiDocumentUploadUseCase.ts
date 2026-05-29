@@ -5,7 +5,7 @@ import { AppError } from '../../infrastructure/middleware/errorHandler';
 import { Logger } from '../../infrastructure/logger/Logger';
 import type { CreateAiDocumentUploadFieldsDTO } from '../../presentation/dto/AiDocumentUploadDTO';
 
-export type AiDocumentFileType = 'pdf' | 'word';
+export type AiDocumentFileType = 'pdf' | 'word' | 'image';
 
 export function inferDocumentFileType(
   filename: string,
@@ -21,6 +21,17 @@ export function inferDocumentFileType(
     lower.endsWith('.docx')
   ) {
     return 'word';
+  }
+  if (
+    mimeType.startsWith('image/') ||
+    lower.endsWith('.png') ||
+    lower.endsWith('.jpg') ||
+    lower.endsWith('.jpeg') ||
+    lower.endsWith('.webp') ||
+    lower.endsWith('.gif') ||
+    lower.endsWith('.bmp')
+  ) {
+    return 'image';
   }
   return null;
 }
@@ -38,7 +49,10 @@ export class CreateAiDocumentUploadUseCase {
   ) {
     const fileType = inferDocumentFileType(file.originalname, file.mimetype);
     if (!fileType) {
-      throw new AppError('Solo se permiten archivos PDF o Word (.doc, .docx)', 400);
+      throw new AppError(
+        'Solo se permiten archivos PDF, Word (.doc, .docx) o imagenes (png, jpg, jpeg, webp, gif, bmp)',
+        400,
+      );
     }
 
     let patientId: string | null = fields.patient_id ?? null;
@@ -68,7 +82,9 @@ export class CreateAiDocumentUploadUseCase {
         file.mimetype ||
         (fileType === 'pdf'
           ? 'application/pdf'
-          : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'),
+          : fileType === 'word'
+            ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            : 'image/jpeg'),
       fileSizeBytes: file.size,
       fileType,
       fileBuffer: file.buffer,

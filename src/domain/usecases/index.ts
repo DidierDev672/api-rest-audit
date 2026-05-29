@@ -18,5 +18,8 @@ export * from './TinnitusAnalysisUseCases';
 export * from './TinnitusNotesAnalysisUseCases';
 export * from './CalendarEventUseCases';
 export * from './CalendarAiAnalysisUseCases';
+export * from './CalendarAnalysisNoteUseCases';
+export * from './CalendarAnalysisNoteAnalysisLogUseCases';
+export * from './AiDocumentAnalysisNoteUseCases';
 export * from './CalendarScheduledTaskUseCases';
 export * from './N8nTextUseCases';

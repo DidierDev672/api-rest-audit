@@ -17,6 +17,11 @@ router.post(
   upload.single('file'),
   AiDocumentUploadController.create,
 );
+router.get(
+  '/:id/signed-url',
+  authMiddleware,
+  AiDocumentUploadController.getSignedUrl,
+);
 router.get('/:id', authMiddleware, AiDocumentUploadController.findById);
 router.post(
   '/:id/queue-analysis',

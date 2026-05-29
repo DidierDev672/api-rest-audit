@@ -23,11 +23,15 @@ import tinnitusNotesAnalysisRoutes from '../../presentation/routes/tinnitusNotes
 import researchNoteAnalysisRoutes from '../../presentation/routes/researchNoteAnalysisRoutes';
 import calendarEventRoutes from '../../presentation/routes/calendarEventRoutes';
 import calendarAiAnalysisRoutes from '../../presentation/routes/calendarAiAnalysisRoutes';
+import calendarAnalysisNoteRoutes from '../../presentation/routes/calendarAnalysisNoteRoutes';
+import calendarAnalysisNoteAnalysisLogRoutes from '../../presentation/routes/calendarAnalysisNoteAnalysisLogRoutes';
 import calendarScheduledTaskRoutes from '../../presentation/routes/calendarScheduledTaskRoutes';
 import n8nRoutes from '../../presentation/routes/n8nRoutes';
 import aiDocumentAnalysisRoutes from '../../presentation/routes/aiDocumentAnalysisRoutes';
+import aiDocumentAnalysisNoteRoutes from '../../presentation/routes/aiDocumentAnalysisNoteRoutes';
 import aiDocumentRedactionRoutes from '../../presentation/routes/aiDocumentRedactionRoutes';
 import aiDocumentUploadRoutes from '../../presentation/routes/aiDocumentUploadRoutes';
+import notePackageRoutes from '../../presentation/routes/notePackageRoutes';
 import { startCalendarTaskScheduler } from '../scheduler/CalendarTaskScheduler';
 import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
 import { authMiddleware } from '../middleware/authMiddleware';
@@ -70,11 +74,18 @@ app.get('/api/v1/research/:researchId/analysis', authMiddleware, ResearchNoteAna
 app.use('/api/v1/research-analysis', researchAnalysisRoutes);
 app.use('/api/v1/calendar-events', calendarEventRoutes);
 app.use('/api/v1/calendar-ai-analyses', calendarAiAnalysisRoutes);
+app.use('/api/v1/calendar-ai-analysis-notes', calendarAnalysisNoteRoutes);
+app.use(
+  '/api/v1/calendar-ai-analysis-note-analysis-logs',
+  calendarAnalysisNoteAnalysisLogRoutes,
+);
 app.use('/api/v1/calendar-scheduled-tasks', calendarScheduledTaskRoutes);
 app.use('/api/v1/integrations/n8n', n8nRoutes);
 app.use('/api/v1/ai-document-uploads', aiDocumentUploadRoutes);
 app.use('/api/v1/ai-document-analyses', aiDocumentAnalysisRoutes);
+app.use('/api/v1/ai-document-analysis-notes', aiDocumentAnalysisNoteRoutes);
 app.use('/api/v1/ai-document-redactions', aiDocumentRedactionRoutes);
+app.use('/api/v1/note-packages', notePackageRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

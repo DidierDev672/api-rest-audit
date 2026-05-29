@@ -97,9 +97,7 @@ class LoginPatientUseCase {
                 });
                 throw new Error('Credenciales inválidas');
             }
-            const token = this.generateToken();
-            await this.repository.updateToken(patientLogin.id, token);
-            const { password: _, ...patientLoginWithoutPassword } = patientLogin;
+            const { token, patientLogin: patientLoginWithoutPassword } = await this.ensureSessionToken(patientLogin);
             Logger_1.Logger.success('Login exitoso', { id: patientLogin.id });
             return {
                 patientLogin: patientLoginWithoutPassword,
@@ -119,6 +117,37 @@ class LoginPatientUseCase {
             .pbkdf2Sync(password, salt, ITERATIONS, KEY_LENGTH, 'sha512')
             .toString('hex');
         return hash === verifyHash;
+    }
+    /** Token almacenado existe en BD y pertenece al mismo usuario. */
+    async isStoredTokenValid(patientLogin) {
+        const storedToken = patientLogin.token?.trim();
+        if (!storedToken) {
+            return false;
+        }
+        const owner = await this.repository.findByToken(storedToken);
+        return owner !== null && owner.id === patientLogin.id;
+    }
+    /**
+     * Primera sesión (sin token en BD): genera y persiste un token nuevo.
+     * Sesiones posteriores: reutiliza el token si sigue siendo válido; si no, genera uno nuevo.
+     */
+    async ensureSessionToken(patientLogin) {
+        const hadValidToken = await this.isStoredTokenValid(patientLogin);
+        if (hadValidToken) {
+            const token = patientLogin.token.trim();
+            Logger_1.Logger.info('Token de sesión válido; reutilizando token existente', {
+                id: patientLogin.id,
+            });
+            const { password: _, ...patientLoginWithoutPassword } = patientLogin;
+            return { token, patientLogin: patientLoginWithoutPassword };
+        }
+        Logger_1.Logger.info('Primera sesión o token inválido; generando nuevo token de sesión', {
+            id: patientLogin.id,
+        });
+        const token = this.generateToken();
+        const updated = await this.repository.updateToken(patientLogin.id, token);
+        const { password: _, ...patientLoginWithoutPassword } = updated;
+        return { token, patientLogin: patientLoginWithoutPassword };
     }
     generateToken() {
         return (0, uuid_1.v4)() + '-' + crypto_1.default.randomBytes(32).toString('hex');

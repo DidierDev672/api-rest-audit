@@ -28,6 +28,13 @@ export declare class LoginPatientUseCase {
     constructor(repository: IPatientLoginRepository);
     execute(data: LoginData): Promise<LoginResult>;
     private verifyPassword;
+    /** Token almacenado existe en BD y pertenece al mismo usuario. */
+    private isStoredTokenValid;
+    /**
+     * Primera sesión (sin token en BD): genera y persiste un token nuevo.
+     * Sesiones posteriores: reutiliza el token si sigue siendo válido; si no, genera uno nuevo.
+     */
+    private ensureSessionToken;
     private generateToken;
 }
 export declare class LogoutPatientUseCase {

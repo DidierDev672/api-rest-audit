@@ -1,4 +1,4 @@
-export type AiDocumentFileType = 'pdf' | 'word';
+export type AiDocumentFileType = 'pdf' | 'word' | 'image';
 
 export interface AiDocumentUpload {
   id: string;

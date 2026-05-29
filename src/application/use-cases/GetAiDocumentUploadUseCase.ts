@@ -1,5 +1,6 @@
 import { IAiDocumentUploadRepository } from '../../domain/repositories/IAiDocumentUploadRepository';
 import { AppError } from '../../infrastructure/middleware/errorHandler';
+import { supabase } from '../../infrastructure/database/supabase';
 
 export class GetAiDocumentUploadUseCase {
   constructor(private readonly repository: IAiDocumentUploadRepository) {}
@@ -48,6 +49,32 @@ export class GetAiDocumentUploadUseCase {
       status: row.status,
       created_at: row.createdAt.toISOString(),
       updated_at: row.updatedAt.toISOString(),
+    };
+  }
+
+  async getSignedDownloadUrl(id: string, expiresInSeconds = 3600) {
+    const row = await this.repository.findById(id);
+    if (!row) {
+      throw new AppError('Documento no encontrado', 404);
+    }
+
+    const { data, error } = await supabase
+      .getClient()
+      .storage.from(row.storageBucket)
+      .createSignedUrl(row.storageObjectPath, expiresInSeconds);
+
+    if (error || !data?.signedUrl) {
+      throw new AppError(
+        error?.message ?? 'No se pudo generar el enlace de descarga',
+        500,
+      );
+    }
+
+    return {
+      signed_url: data.signedUrl,
+      storage_bucket: row.storageBucket,
+      storage_object_path: row.storageObjectPath,
+      mime_type: row.mimeType,
     };
   }
 }

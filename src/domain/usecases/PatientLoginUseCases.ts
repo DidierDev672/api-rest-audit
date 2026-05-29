@@ -124,10 +124,8 @@ export class LoginPatientUseCase {
         throw new Error('Credenciales inválidas');
       }
 
-      const token = this.generateToken();
-      await this.repository.updateToken(patientLogin.id, token);
-
-      const { password: _, ...patientLoginWithoutPassword } = patientLogin;
+      const { token, patientLogin: patientLoginWithoutPassword } =
+        await this.ensureSessionToken(patientLogin);
 
       Logger.success('Login exitoso', { id: patientLogin.id });
       return {
@@ -148,6 +146,46 @@ export class LoginPatientUseCase {
       .pbkdf2Sync(password, salt, ITERATIONS, KEY_LENGTH, 'sha512')
       .toString('hex');
     return hash === verifyHash;
+  }
+
+  /** Token almacenado existe en BD y pertenece al mismo usuario. */
+  private async isStoredTokenValid(patientLogin: PatientLogin): Promise<boolean> {
+    const storedToken = patientLogin.token?.trim();
+    if (!storedToken) {
+      return false;
+    }
+
+    const owner = await this.repository.findByToken(storedToken);
+    return owner !== null && owner.id === patientLogin.id;
+  }
+
+  /**
+   * Primera sesión (sin token en BD): genera y persiste un token nuevo.
+   * Sesiones posteriores: reutiliza el token si sigue siendo válido; si no, genera uno nuevo.
+   */
+  private async ensureSessionToken(
+    patientLogin: PatientLogin
+  ): Promise<{ token: string; patientLogin: Omit<PatientLogin, 'password'> }> {
+    const hadValidToken = await this.isStoredTokenValid(patientLogin);
+
+    if (hadValidToken) {
+      const token = patientLogin.token!.trim();
+      Logger.info('Token de sesión válido; reutilizando token existente', {
+        id: patientLogin.id,
+      });
+      const { password: _, ...patientLoginWithoutPassword } = patientLogin;
+      return { token, patientLogin: patientLoginWithoutPassword };
+    }
+
+    Logger.info('Primera sesión o token inválido; generando nuevo token de sesión', {
+      id: patientLogin.id,
+    });
+
+    const token = this.generateToken();
+    const updated = await this.repository.updateToken(patientLogin.id, token);
+    const { password: _, ...patientLoginWithoutPassword } = updated;
+
+    return { token, patientLogin: patientLoginWithoutPassword };
   }
 
   private generateToken(): string {

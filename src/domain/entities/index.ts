@@ -303,6 +303,28 @@ export interface CalendarAiAnalysis extends Entity {
   generatedAt: Date;
 }
 
+export interface CalendarAnalysisNote extends Entity {
+  calendarAiAnalysisId: string;
+  content: string;
+  color: string;
+  colorName: string;
+}
+
+export interface AiDocumentAnalysisNote extends Entity {
+  aiDocumentAnalysisId: string;
+  content: string;
+  color: string;
+  colorName: string;
+}
+
+export interface CalendarAnalysisNoteAnalysisLog extends Entity {
+  calendarAiAnalysisId: string;
+  analysis: string;
+  noteCount: number;
+  model: string | null;
+  analyzedAt: Date;
+}
+
 export interface CalendarScheduledTask extends Entity {
   calendarEventId: string | null;
   title: string;
