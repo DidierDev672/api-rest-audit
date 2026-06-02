@@ -61,6 +61,41 @@ export class GetCalendarAnalysisNoteByIdUseCase {
   }
 }
 
+export class UpdateCalendarAnalysisNoteUseCase {
+  constructor(private readonly noteRepository: ICalendarAnalysisNoteRepository) {}
+
+  async execute(
+    id: string,
+    data: {
+      content?: string;
+      color?: string;
+      colorName?: string;
+      createdAt?: string;
+    },
+  ): Promise<CalendarAnalysisNote> {
+    IdValidator.validate(id, 'CalendarAnalysisNote');
+
+    const existing = await this.noteRepository.findById(id);
+    if (!existing) {
+      throw new Error('Nota no encontrada');
+    }
+
+    const patch: {
+      content?: string;
+      color?: string;
+      colorName?: string;
+      createdAt?: Date;
+    } = {};
+
+    if (data.content !== undefined) patch.content = data.content.trim();
+    if (data.color !== undefined) patch.color = data.color;
+    if (data.colorName !== undefined) patch.colorName = data.colorName.trim();
+    if (data.createdAt !== undefined) patch.createdAt = new Date(data.createdAt);
+
+    return this.noteRepository.update(id, patch);
+  }
+}
+
 export class DeleteCalendarAnalysisNoteUseCase {
   constructor(private readonly noteRepository: ICalendarAnalysisNoteRepository) {}
 

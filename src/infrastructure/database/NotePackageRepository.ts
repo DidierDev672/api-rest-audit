@@ -178,4 +178,98 @@ export class NotePackageRepository {
     if (error) throw new Error(error.message);
     return (data ?? []) as NotePackageAnalysisLogRow[];
   }
+
+  async deletePackageById(id: string): Promise<boolean> {
+    const { error, count } = await supabase
+      .from(this.packagesTable)
+      .delete({ count: 'exact' })
+      .eq('id', id);
+
+    if (error) throw new Error(error.message);
+    return (count ?? 0) > 0;
+  }
+
+  async findNoteById(
+    packageId: string,
+    noteId: string,
+  ): Promise<NotePackageItemRow | null> {
+    const { data, error } = await supabase
+      .from(this.itemsTable)
+      .select('*')
+      .eq('id', noteId)
+      .eq('note_package_id', packageId)
+      .maybeSingle();
+
+    if (error) throw new Error(error.message);
+    return (data as NotePackageItemRow) ?? null;
+  }
+
+  private async syncPackageNoteCount(packageId: string): Promise<number> {
+    const notes = await this.findNotesByPackageId(packageId);
+    const noteCount = notes.length;
+    const now = new Date().toISOString();
+
+    const { error } = await supabase
+      .from(this.packagesTable)
+      .update({ note_count: noteCount, updated_at: now })
+      .eq('id', packageId);
+
+    if (error) throw new Error(error.message);
+    return noteCount;
+  }
+
+  async updateNoteItem(input: {
+    packageId: string;
+    noteId: string;
+    subject: string;
+    content: string;
+    color: string;
+    color_name: string;
+  }): Promise<NotePackageItemRow> {
+    const existing = await this.findNoteById(input.packageId, input.noteId);
+    if (!existing) {
+      throw new Error('Nota no encontrada en este paquete');
+    }
+
+    const now = new Date().toISOString();
+    const { data, error } = await supabase
+      .from(this.itemsTable)
+      .update({
+        subject: input.subject.trim(),
+        content: input.content.trim(),
+        color: input.color,
+        color_name: input.color_name,
+        updated_at: now,
+      })
+      .eq('id', input.noteId)
+      .eq('note_package_id', input.packageId)
+      .select()
+      .single();
+
+    if (error) throw new Error(error.message);
+
+    await supabase
+      .from(this.packagesTable)
+      .update({ updated_at: now })
+      .eq('id', input.packageId);
+
+    return data as NotePackageItemRow;
+  }
+
+  async deleteNoteItem(packageId: string, noteId: string): Promise<boolean> {
+    const existing = await this.findNoteById(packageId, noteId);
+    if (!existing) return false;
+
+    const { error, count } = await supabase
+      .from(this.itemsTable)
+      .delete({ count: 'exact' })
+      .eq('id', noteId)
+      .eq('note_package_id', packageId);
+
+    if (error) throw new Error(error.message);
+    if ((count ?? 0) === 0) return false;
+
+    await this.syncPackageNoteCount(packageId);
+    return true;
+  }
 }

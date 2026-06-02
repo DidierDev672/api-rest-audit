@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { CreateAiDocumentAnalysisUseCase } from '../../application/use-cases/CreateAiDocumentAnalysisUseCase';
 import { GetAiDocumentAnalysisUseCase } from '../../application/use-cases/GetAiDocumentAnalysisUseCase';
+import { DeleteAiDocumentAnalysisUseCase } from '../../application/use-cases/DeleteAiDocumentAnalysisUseCase';
+import { UpdateAiDocumentAnalysisUseCase } from '../../application/use-cases/UpdateAiDocumentAnalysisUseCase';
 import { AiDocumentAnalysisRepository } from '../../infrastructure/database/AiDocumentAnalysisRepository';
-import { CreateAiDocumentAnalysisSchema } from '../dto/AiDocumentAnalysisDTO';
+import { CreateAiDocumentAnalysisSchema, UpdateAiDocumentAnalysisSchema } from '../dto/AiDocumentAnalysisDTO';
 import { IdValidator } from '../../infrastructure/validators/IdValidator';
 import { AppError } from '../../infrastructure/middleware/errorHandler';
 import { ZodError } from 'zod';
@@ -11,6 +13,8 @@ import { Logger } from '../../infrastructure/logger/Logger';
 const repository = new AiDocumentAnalysisRepository();
 const createUseCase = new CreateAiDocumentAnalysisUseCase(repository);
 const getUseCase = new GetAiDocumentAnalysisUseCase(repository);
+const deleteUseCase = new DeleteAiDocumentAnalysisUseCase(repository);
+const updateUseCase = new UpdateAiDocumentAnalysisUseCase(repository);
 
 export class AiDocumentAnalysisController {
   static async create(req: Request, res: Response) {
@@ -116,6 +120,60 @@ export class AiDocumentAnalysisController {
         return;
       }
       Logger.danger('Error en AiDocumentAnalysisController.findByDocumentUploadId', { error: (error as Error).message });
+      res.status(500).json({ error: (error as Error).message });
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      IdValidator.validate(id, 'AiDocumentAnalysis');
+
+      const data = UpdateAiDocumentAnalysisSchema.parse(req.body);
+      const updated = await updateUseCase.execute(id, data);
+
+      res.json({
+        status: 'success',
+        message: 'Análisis actualizado correctamente',
+        data: updated,
+      });
+    } catch (error) {
+      if (error instanceof ZodError) {
+        const firstError = error.errors[0];
+        res.status(400).json({
+          status: 'error',
+          code: 'VALIDATION_ERROR',
+          message: firstError.message,
+          details: { field: firstError.path.join('.') },
+        });
+        return;
+      }
+      if (error instanceof AppError) {
+        res.status(error.statusCode).json({ error: error.message });
+        return;
+      }
+      Logger.danger('Error en AiDocumentAnalysisController.update', { error: (error as Error).message });
+      res.status(500).json({ error: (error as Error).message });
+    }
+  }
+
+  static async delete(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      IdValidator.validate(id, 'AiDocumentAnalysis');
+
+      await deleteUseCase.execute(id);
+
+      res.json({
+        status: 'success',
+        message: 'Análisis eliminado correctamente',
+      });
+    } catch (error) {
+      if (error instanceof AppError) {
+        res.status(error.statusCode).json({ error: error.message });
+        return;
+      }
+      Logger.danger('Error en AiDocumentAnalysisController.delete', { error: (error as Error).message });
       res.status(500).json({ error: (error as Error).message });
     }
   }

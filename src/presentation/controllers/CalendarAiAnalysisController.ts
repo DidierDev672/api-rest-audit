@@ -3,10 +3,15 @@ import {
   CreateCalendarAiAnalysisUseCase,
   GetCalendarAiAnalysesUseCase,
   GetCalendarAiAnalysisByIdUseCase,
+  UpdateCalendarAiAnalysisUseCase,
   DeleteCalendarAiAnalysisUseCase,
 } from '../../domain/usecases';
 import { CalendarAiAnalysisRepository } from '../../infrastructure/database';
-import { CreateCalendarAiAnalysisDTO, CalendarAiAnalysisQueryDTO } from '../dto';
+import {
+  CreateCalendarAiAnalysisDTO,
+  CalendarAiAnalysisQueryDTO,
+  UpdateCalendarAiAnalysisDTO,
+} from '../dto';
 import { ZodError } from 'zod';
 import { Logger } from '../../infrastructure/logger/Logger';
 
@@ -69,6 +74,34 @@ export class CalendarAiAnalysisController {
         return;
       }
       Logger.danger('Error en CalendarAiAnalysisController.findById', { error: errorMessage });
+      res.status(500).json({ error: errorMessage });
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const body = UpdateCalendarAiAnalysisDTO.parse(req.body);
+      const useCase = new UpdateCalendarAiAnalysisUseCase(repository);
+      const result = await useCase.execute(id, body);
+      res.json(result);
+    } catch (error) {
+      if (error instanceof ZodError) {
+        res.status(400).json({ error: error.errors });
+        return;
+      }
+      const errorMessage = (error as Error).message;
+      if (
+        errorMessage.includes('ID es requerido') ||
+        errorMessage.includes('no es válido') ||
+        errorMessage.includes('no encontrada')
+      ) {
+        res.status(400).json({ error: errorMessage });
+        return;
+      }
+      Logger.danger('Error en CalendarAiAnalysisController.update', {
+        error: errorMessage,
+      });
       res.status(500).json({ error: errorMessage });
     }
   }

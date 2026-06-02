@@ -21,8 +21,26 @@ export const CalendarAiAnalysisQuerySchema = z.object({
   to: z.string().regex(dateRegex, 'to debe ser YYYY-MM-DD').optional(),
 });
 
+export const UpdateCalendarAiAnalysisSchema = z
+  .object({
+    eventTitle: z.string().min(1, 'eventTitle es requerido').optional(),
+    researchName: z.string().nullable().optional(),
+    content: z.string().min(10, 'content debe tener al menos 10 caracteres').optional(),
+    eventDate: z.string().regex(dateRegex, 'eventDate debe ser YYYY-MM-DD').optional(),
+  })
+  .refine(
+    (data) =>
+      data.eventTitle !== undefined ||
+      data.researchName !== undefined ||
+      data.content !== undefined ||
+      data.eventDate !== undefined,
+    { message: 'Debe enviar al menos un campo para actualizar' },
+  );
+
 export const CreateCalendarAiAnalysisDTO = CreateCalendarAiAnalysisSchema;
 export const CalendarAiAnalysisQueryDTO = CalendarAiAnalysisQuerySchema;
+export const UpdateCalendarAiAnalysisDTO = UpdateCalendarAiAnalysisSchema;
 
 export type CreateCalendarAiAnalysisDTO = z.infer<typeof CreateCalendarAiAnalysisSchema>;
 export type CalendarAiAnalysisQueryDTO = z.infer<typeof CalendarAiAnalysisQuerySchema>;
+export type UpdateCalendarAiAnalysisDTO = z.infer<typeof UpdateCalendarAiAnalysisSchema>;

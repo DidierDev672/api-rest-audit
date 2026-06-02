@@ -5,4 +5,6 @@ export interface IAiDocumentAnalysisRepository {
   findById(id: string): Promise<AiDocumentAnalysis | null>;
   findByDocumentUploadId(documentUploadId: string): Promise<AiDocumentAnalysis[]>;
   findAll(): Promise<AiDocumentAnalysis[]>;
+  update(id: string, data: Partial<AiDocumentAnalysis>): Promise<AiDocumentAnalysis>;
+  delete(id: string): Promise<void>;
 }

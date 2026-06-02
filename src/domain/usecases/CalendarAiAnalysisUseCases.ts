@@ -85,6 +85,39 @@ export class GetCalendarAiAnalysisByIdUseCase {
   }
 }
 
+export class UpdateCalendarAiAnalysisUseCase {
+  constructor(private readonly repository: ICalendarAiAnalysisRepository) {}
+
+  async execute(
+    id: string,
+    data: {
+      eventTitle?: string;
+      researchName?: string | null;
+      content?: string;
+      eventDate?: string;
+    },
+  ): Promise<CalendarAiAnalysis> {
+    try {
+      IdValidator.validate(id, 'CalendarAiAnalysis');
+      Logger.info('Actualizando análisis IA de calendario', { id });
+
+      const existing = await this.repository.findById(id);
+      if (!existing) {
+        throw new Error('Análisis IA de calendario no encontrada');
+      }
+
+      const result = await this.repository.update(id, data);
+      Logger.success('Análisis IA de calendario actualizado', { id });
+      return result;
+    } catch (error) {
+      Logger.danger('Error al actualizar análisis IA de calendario', {
+        error: (error as Error).message,
+      });
+      throw error;
+    }
+  }
+}
+
 export class DeleteCalendarAiAnalysisUseCase {
   constructor(private readonly repository: ICalendarAiAnalysisRepository) {}
 

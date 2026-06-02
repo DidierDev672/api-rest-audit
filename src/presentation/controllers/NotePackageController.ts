@@ -26,6 +26,13 @@ const CreateAnalysisLogSchema = z.object({
   analyzed_at: z.string().optional(),
 });
 
+const UpdateNoteItemSchema = z.object({
+  subject: z.string().min(1, 'El asunto es requerido'),
+  content: z.string().min(1, 'El contenido es requerido'),
+  color: z.string().min(1),
+  color_name: z.string().min(1),
+});
+
 function mapPackage(row: {
   id: string;
   title: string;
@@ -141,6 +148,68 @@ export class NotePackageController {
       });
     } catch (error) {
       NotePackageController.handleError(error, res, 'findById');
+    }
+  }
+
+  static async deleteById(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const deleted = await repo.deletePackageById(id);
+      if (!deleted) {
+        res.status(404).json({ error: 'Paquete de notas no encontrado' });
+        return;
+      }
+      res.status(204).send();
+    } catch (error) {
+      NotePackageController.handleError(error, res, 'deleteById');
+    }
+  }
+
+  static async updateNote(req: Request, res: Response) {
+    try {
+      const { id: packageId, noteId } = req.params;
+      const body = UpdateNoteItemSchema.parse(req.body);
+
+      const pkg = await repo.findPackageById(packageId);
+      if (!pkg) {
+        res.status(404).json({ error: 'Paquete de notas no encontrado' });
+        return;
+      }
+
+      const updated = await repo.updateNoteItem({
+        packageId,
+        noteId,
+        subject: body.subject,
+        content: body.content,
+        color: body.color,
+        color_name: body.color_name,
+      });
+
+      res.json(mapNote(updated));
+    } catch (error) {
+      NotePackageController.handleError(error, res, 'updateNote');
+    }
+  }
+
+  static async deleteNote(req: Request, res: Response) {
+    try {
+      const { id: packageId, noteId } = req.params;
+
+      const pkg = await repo.findPackageById(packageId);
+      if (!pkg) {
+        res.status(404).json({ error: 'Paquete de notas no encontrado' });
+        return;
+      }
+
+      const deleted = await repo.deleteNoteItem(packageId, noteId);
+      if (!deleted) {
+        res.status(404).json({ error: 'Nota no encontrada en este paquete' });
+        return;
+      }
+
+      res.status(204).send();
+    } catch (error) {
+      NotePackageController.handleError(error, res, 'deleteNote');
     }
   }
 

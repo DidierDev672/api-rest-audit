@@ -74,6 +74,35 @@ export class CalendarAiAnalysisRepository implements ICalendarAiAnalysisReposito
     return this.mapToEntity(data);
   }
 
+  async update(
+    id: string,
+    data: {
+      eventTitle?: string;
+      researchName?: string | null;
+      content?: string;
+      eventDate?: string;
+    },
+  ): Promise<CalendarAiAnalysis> {
+    const patch: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+
+    if (data.eventTitle !== undefined) patch.event_title = data.eventTitle;
+    if (data.researchName !== undefined) patch.research_name = data.researchName;
+    if (data.content !== undefined) patch.content = data.content;
+    if (data.eventDate !== undefined) patch.event_date = data.eventDate;
+
+    const { data: result, error } = await supabase
+      .from(this.table)
+      .update(patch)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) throw new Error(error.message);
+    return this.mapToEntity(result);
+  }
+
   async delete(id: string): Promise<void> {
     const { error } = await supabase
       .from(this.table)

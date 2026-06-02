@@ -80,6 +80,38 @@ export class CalendarAnalysisNoteRepository implements ICalendarAnalysisNoteRepo
     return this.mapToEntity(data);
   }
 
+  async update(
+    id: string,
+    data: {
+      content?: string;
+      color?: string;
+      colorName?: string;
+      createdAt?: Date;
+    },
+  ): Promise<CalendarAnalysisNote> {
+    const patch: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+
+    if (data.content !== undefined) patch.content = data.content;
+    if (data.color !== undefined) patch.color = data.color;
+    if (data.colorName !== undefined) patch.color_name = data.colorName;
+    if (data.createdAt !== undefined) patch.created_at = data.createdAt.toISOString();
+
+    const { data: result, error } = await supabase
+      .from(this.table)
+      .update(patch)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return this.mapToEntity(result);
+  }
+
   async delete(id: string): Promise<void> {
     const { error } = await supabase.from(this.table).delete().eq('id', id);
 

@@ -4,6 +4,7 @@ import {
   CreateCalendarAnalysisNoteUseCase,
   GetCalendarAnalysisNotesUseCase,
   GetCalendarAnalysisNoteByIdUseCase,
+  UpdateCalendarAnalysisNoteUseCase,
   DeleteCalendarAnalysisNoteUseCase,
 } from '../../domain/usecases/CalendarAnalysisNoteUseCases';
 import {
@@ -13,6 +14,7 @@ import {
 import {
   CreateCalendarAnalysisNoteDTO,
   CalendarAnalysisNoteQueryDTO,
+  UpdateCalendarAnalysisNoteDTO,
 } from '../dto/CalendarAnalysisNoteDTO';
 import { Logger } from '../../infrastructure/logger/Logger';
 
@@ -108,6 +110,33 @@ export class CalendarAnalysisNoteController {
         return;
       }
       Logger.danger('Error en CalendarAnalysisNoteController.findById', { error: message });
+      res.status(500).json({ error: message });
+    }
+  }
+
+  static async update(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const data = UpdateCalendarAnalysisNoteDTO.parse(req.body);
+      const useCase = new UpdateCalendarAnalysisNoteUseCase(noteRepository);
+      const result = await useCase.execute(id, {
+        content: data.content,
+        color: data.color,
+        colorName: data.color_name,
+        createdAt: data.created_at,
+      });
+      res.json(result);
+    } catch (error) {
+      if (error instanceof ZodError) {
+        res.status(400).json({ error: error.errors });
+        return;
+      }
+      const message = (error as Error).message;
+      if (message.includes('no encontrada')) {
+        res.status(404).json({ error: message });
+        return;
+      }
+      Logger.danger('Error en CalendarAnalysisNoteController.update', { error: message });
       res.status(500).json({ error: message });
     }
   }

@@ -11,3 +11,14 @@ export const CreateAiDocumentAnalysisSchema = z.object({
 });
 
 export type CreateAiDocumentAnalysisDTO = z.infer<typeof CreateAiDocumentAnalysisSchema>;
+
+export const UpdateAiDocumentAnalysisSchema = z.object({
+  content: z
+    .string()
+    .min(1, 'El contenido no puede estar vacío')
+    .refine(val => val.trim().length > 0, { message: 'El contenido no puede estar vacío' })
+    .optional(),
+  model: z.string().min(1).optional(),
+});
+
+export type UpdateAiDocumentAnalysisDTO = z.infer<typeof UpdateAiDocumentAnalysisSchema>;

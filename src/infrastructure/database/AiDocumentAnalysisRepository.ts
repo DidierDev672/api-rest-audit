@@ -80,6 +80,47 @@ export class AiDocumentAnalysisRepository implements IAiDocumentAnalysisReposito
     return data.map(this.mapToEntity);
   }
 
+  async update(id: string, data: Partial<AiDocumentAnalysis>): Promise<AiDocumentAnalysis> {
+    Logger.info('Actualizando análisis de documento AI', { id });
+
+    const updatePayload: Record<string, unknown> = {
+      updated_at: new Date().toISOString(),
+    };
+    if (data.content !== undefined) updatePayload.content = data.content;
+    if (data.model !== undefined) updatePayload.model = data.model;
+
+    const { data: updated, error } = await supabase
+      .from(this.table)
+      .update(updatePayload)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      Logger.danger('Error al actualizar análisis de documento AI', { error: error.message });
+      throw new Error(error.message);
+    }
+
+    Logger.success('Análisis de documento AI actualizado', { id });
+    return this.mapToEntity(updated);
+  }
+
+  async delete(id: string): Promise<void> {
+    Logger.info('Eliminando análisis de documento AI', { id });
+
+    const { error } = await supabase
+      .from(this.table)
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      Logger.danger('Error al eliminar análisis de documento AI', { error: error.message });
+      throw new Error(error.message);
+    }
+
+    Logger.success('Análisis de documento AI eliminado', { id });
+  }
+
   private mapToEntity(data: any): AiDocumentAnalysis {
     return {
       id: data.id,
