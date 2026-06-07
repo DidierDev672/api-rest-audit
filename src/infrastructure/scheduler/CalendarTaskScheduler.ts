@@ -1,10 +1,15 @@
 import { ProcessDueCalendarScheduledTasksUseCase } from '../../domain/usecases/CalendarScheduledTaskUseCases';
+import { ProcessDueAiResearchAssignmentsUseCase } from '../../application/use-cases/ProcessDueAiResearchAssignmentsUseCase';
 import {
   CalendarEventRepository,
   CalendarScheduledTaskRepository,
   CalendarNotificationRepository,
+  AiResearchAssignmentRepository,
+  AiResearchResultRepository,
+  AiModelCredentialRepository,
 } from '../database';
 import { CalendarNotificationGateway } from '../clients/CalendarNotificationGateway';
+import { GeminiResearchGateway } from '../clients/GeminiResearchGateway';
 import { Logger } from '../logger/Logger';
 
 let intervalId: ReturnType<typeof setInterval> | null = null;
@@ -29,11 +34,26 @@ export function startCalendarTaskScheduler(): void {
     CalendarNotificationGateway.create()
   );
 
+  const researchUseCase = new ProcessDueAiResearchAssignmentsUseCase(
+    new AiResearchAssignmentRepository(),
+    new AiResearchResultRepository(),
+    new AiModelCredentialRepository(),
+    new GeminiResearchGateway()
+  );
+
   const run = async () => {
     try {
       await useCase.execute(batchLimit);
     } catch (error) {
       Logger.danger('Error en el programador de tareas de calendario', {
+        error: (error as Error).message,
+      });
+    }
+
+    try {
+      await researchUseCase.execute(batchLimit);
+    } catch (error) {
+      Logger.danger('Error en el programador de investigaciones IA', {
         error: (error as Error).message,
       });
     }

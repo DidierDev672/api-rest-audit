@@ -22,3 +22,5 @@ export * from './calendarEventRoutes';
 export * from './calendarAiAnalysisRoutes';
 export * from './aiDocumentAnalysisRoutes';
 export * from './aiDocumentRedactionRoutes';
+export * from './aiModelCredentialRoutes';
+export * from './aiResearchAssignmentRoutes';

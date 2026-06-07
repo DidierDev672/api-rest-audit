@@ -256,6 +256,40 @@ export class NotePackageRepository {
     return data as NotePackageItemRow;
   }
 
+  async addNoteToPackage(input: {
+    packageId: string;
+    subject: string;
+    content: string;
+    color: string;
+    color_name: string;
+  }): Promise<NotePackageItemRow> {
+    const id = uuidv4();
+    const now = new Date().toISOString();
+
+    const { data, error } = await supabase
+      .from(this.itemsTable)
+      .insert({
+        id,
+        note_package_id: input.packageId,
+        subject: input.subject.trim(),
+        content: input.content.trim(),
+        color: input.color,
+        color_name: input.color_name,
+        created_at: now,
+        updated_at: now,
+      })
+      .select()
+      .single();
+
+    if (error) {
+      Logger.danger('Error agregando nota al paquete', { error: error.message });
+      throw new Error(error.message);
+    }
+
+    await this.syncPackageNoteCount(input.packageId);
+    return data as NotePackageItemRow;
+  }
+
   async deleteNoteItem(packageId: string, noteId: string): Promise<boolean> {
     const existing = await this.findNoteById(packageId, noteId);
     if (!existing) return false;

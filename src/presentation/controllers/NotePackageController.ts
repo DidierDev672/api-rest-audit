@@ -191,6 +191,31 @@ export class NotePackageController {
     }
   }
 
+  static async addNote(req: Request, res: Response) {
+    try {
+      const { id: packageId } = req.params;
+      const body = UpdateNoteItemSchema.parse(req.body);
+
+      const pkg = await repo.findPackageById(packageId);
+      if (!pkg) {
+        res.status(404).json({ error: 'Paquete de notas no encontrado' });
+        return;
+      }
+
+      const note = await repo.addNoteToPackage({
+        packageId,
+        subject: body.subject,
+        content: body.content,
+        color: body.color,
+        color_name: body.color_name,
+      });
+
+      res.status(201).json(mapNote(note));
+    } catch (error) {
+      NotePackageController.handleError(error, res, 'addNote');
+    }
+  }
+
   static async deleteNote(req: Request, res: Response) {
     try {
       const { id: packageId, noteId } = req.params;

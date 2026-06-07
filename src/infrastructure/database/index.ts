@@ -32,3 +32,6 @@ export * from './AiDocumentRedactionRepository';
 export * from './AiDocumentAnalysisRepository';
 export * from './AiDocumentAnalysisNoteRepository';
 export * from './AiDocumentUploadRepository';
+export * from './AiModelCredentialRepository';
+export * from './AiResearchAssignmentRepository';
+export * from './AiResearchResultRepository';

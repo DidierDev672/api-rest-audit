@@ -32,6 +32,8 @@ import aiDocumentAnalysisNoteRoutes from '../../presentation/routes/aiDocumentAn
 import aiDocumentRedactionRoutes from '../../presentation/routes/aiDocumentRedactionRoutes';
 import aiDocumentUploadRoutes from '../../presentation/routes/aiDocumentUploadRoutes';
 import notePackageRoutes from '../../presentation/routes/notePackageRoutes';
+import aiModelCredentialRoutes from '../../presentation/routes/aiModelCredentialRoutes';
+import aiResearchAssignmentRoutes from '../../presentation/routes/aiResearchAssignmentRoutes';
 import { startCalendarTaskScheduler } from '../scheduler/CalendarTaskScheduler';
 import { ResearchNoteAnalysisController } from '../../presentation/controllers/ResearchNoteAnalysisController';
 import { authMiddleware } from '../middleware/authMiddleware';
@@ -86,6 +88,8 @@ app.use('/api/v1/ai-document-analyses', aiDocumentAnalysisRoutes);
 app.use('/api/v1/ai-document-analysis-notes', aiDocumentAnalysisNoteRoutes);
 app.use('/api/v1/ai-document-redactions', aiDocumentRedactionRoutes);
 app.use('/api/v1/note-packages', notePackageRoutes);
+app.use('/api/v1/ai-model-credentials', aiModelCredentialRoutes);
+app.use('/api/v1/ai-research-assignments', aiResearchAssignmentRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

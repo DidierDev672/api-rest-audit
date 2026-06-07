@@ -30,3 +30,6 @@ export * from './IAiDocumentAnalysisRepository';
 export * from './IAiDocumentAnalysisNoteRepository';
 export * from './IAiDocumentRedactionRepository';
 export * from './IAiDocumentUploadRepository';
+export * from './IAiModelCredentialRepository';
+export * from './IAiResearchAssignmentRepository';
+export * from './IAiResearchResultRepository';
